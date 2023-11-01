@@ -7,6 +7,8 @@ INSERT INTO Permits VALUES( 2, 4, 'Warren Harding', 'rockclimbing', 30, '2023-07
 INSERT INTO Permits VALUES( 11, 1, 'Mike Piazza', 'camping', 3, '2024-05-01', '2024-05-04');
 INSERT INTO Permits VALUES( 14, 1, 'Thomas Redbook', 'hiking', 1, '2023-10-31', '2023-10-31');
 INSERT INTO Permits VALUES( 2, 5, 'Scrooge McDuck', 'camping', 2, '2023-12-30', '2023-12-31');
+INSERT INTO Permits VALUES( 2, 6, 'Baloo', 'camping', 3, '2023-11-17', '2023-11-20');
+INSERT INTO Permits VALUES( 2, 7, 'Chip', 'camping', 4, '2023-11-1', '2023-11-5');
 
 
 UPDATE Permits SET parkIdNumber = 1 WHERE type = 'rockclimbing';
@@ -72,6 +74,10 @@ INSERT INTO Fees VALUES(2, 'camping', 17.00);
 INSERT INTO Fees VALUES(2, 'swimming', 16.00);
 INSERT INTO Fees VALUES(2, 'fishing', 13.00);
 INSERT INTO Fees VALUES(2, 'rockclimbing', 25.00);
+INSERT INTO Fees VALUES(3, 'hiking', 15.00);
+INSERT INTO Fees VALUES(3, 'backpacking', 20.00);
+INSERT INTO Fees VALUES(3, 'camping', 17.00);
+INSERT INTO Fees VALUES(3, 'rockclimbing', 25.00);
 
 
 Location ( parkIDNumber Int(15), state varchar(10), address varchar(25), county varchar(25), city varchar(45), zipcode Int(14)
@@ -96,6 +102,14 @@ INSERT INTO Location VALUES( 5, 'Arizona', '20 South Entrance Rd', 'Mohave', 'Gr
 INSERT INTO Location VALUES( 4, 'Maine', '25 Visitor Center Rd', 'Hancock-Knox', 'Bar Harbor', 04609);
 INSERT INTO Location VALUES( 3, 'Utah', 'Arches National Park Rd', 'Grand', 'Moab', 84532);
 INSERT INTO Location VALUES( 1, 'Montana-Wyoming', 'North Entrance Rd-2 Officers Row', 'Teton-Gallatin', 'Gardiner-Cody', 59030-82190);
+
+SELECT ownerName, amount FROM Permits, Fees
+WHERE Permits.type = Fees.permitType
+AND Permits.parkIDNumber = Fees.parkIDNumber
+AND Fees.parkIDNumber =2;
+Print owners and fees of camping permits from Yosemite.
+
+
 
 
 #Lab 7 Stuff
