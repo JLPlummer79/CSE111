@@ -9,9 +9,14 @@ INSERT INTO Permits VALUES( 14, 1, 'Thomas Redbook', 'hiking', 1, '2023-10-31', 
 INSERT INTO Permits VALUES( 2, 5, 'Scrooge McDuck', 'camping', 2, '2023-12-30', '2023-12-31');
 INSERT INTO Permits VALUES( 2, 6, 'Baloo', 'camping', 3, '2023-11-17', '2023-11-20');
 INSERT INTO Permits VALUES( 2, 7, 'Chip', 'camping', 4, '2023-11-1', '2023-11-5');
+INSERT INTO Permits VALUES( 5, 5, 'Jim Peterson', 'backpacking', 6, '2023-11-1', '2023-11-5');
+INSERT INTO Permits VALUES( 12, 1, 'Thomas Finley', 'backpacking', 3, '2023-09-12', '2023-09-15');
+INSERT INTO Permits VALUES( 14, 1, 'Agustine Burnhard', 'backpacking', 12, '2023-10-11', '2023-10-23');
+INSERT INTO Permits VALUES( 16, 1, 'Jim Lee', 'backpacking', 5, '2023-07-11', '2023-07-16');
+INSERT INTO Permits VALUES( 1, 1, 'Albert Einstein', 'backpacking', 13, '2023-07-01', '2023-07-14');
 
 
-UPDATE Permits SET parkIdNumber = 1 WHERE type = 'rockclimbing';
+UPDATE Permits SET parkIdNumber = 2 WHERE type = 'rockclimbing';
 
 CREATE TABLE Features( parkIDNumber Int(15), featureName varchar(200), structures varchar(150), flora varchar(200), fauna varchar(200) );
 INSERT into Features VALUES(1, 'Old Faithful-Grand Prismatic-Yellowstone Falls-Mudpots', 'visitor centers-hotels-bathrooms-gift shops', 'Lodgepole Pine', 'Bison-Elk-Grizzley Bear-Wolf');
@@ -35,11 +40,13 @@ INSERT into Features VALUES(15, 'Appalacian Trail-Clingmans Dome-Newfound Gap-Ca
 CREATE TABLE Staff(employeeIDNumber Int(20), parkIDNumber Int(15), department varchar(20), schedule varchar(50), name varchar(50) );
 
 CREATE TABLE Recreation( parkIDNumber Int(15), permitIDNumber Int(20), activity varchar(25), trailName varchar(50), trailHead varchar(50), road varchar(50), campsiteName varchar(50) );
+INSERT INTO Recreation VALUES(1, 1, 'backpacking', 'Dawson', ' ', ' ');
 
 UPDATE Park SET permitType = 'hiking-backpacking-camping-swimming-fishing' WHERE name = 'Yellowstone';
 UPDATE Park SET permitType = 'hiking-backpacking-camping-swimming-rockclimbing-fishing' WHERE name = 'Yosemite';
 UPDATE Park SET permitType = 'hiking-camping-backpacking-swimming-fishing' WHERE name = 'Great Smokey Mountains';
 
+CREATE TABLE Park( iDNumber Int(15), designation Varchar(24), hours Varchar(12), totalNumPermits Int(5), permitType Varchar(25), name Varchar(45));
 INSERT into Park VALUES(1, NationalPark, M-Sun 8:00 - 17:00, 12, hiking-backpacking-camping-swimming, Yellowstone);
 INSERT into Park VALUES(2, 'NationalPark', 'Sun-Sat 8:00 - 17:00', 42, 'hiking-backpacking-camping-swimming-rockclimbing', 'Yosemite');
 INSERT into Park VALUES(3, 'NationalPark', 'Sun-Sat 8:00 - 17:00', 42, 'hiking-backpacking-camping-rockclimbing', 'Arches');
@@ -103,12 +110,22 @@ INSERT INTO Location VALUES( 4, 'Maine', '25 Visitor Center Rd', 'Hancock-Knox',
 INSERT INTO Location VALUES( 3, 'Utah', 'Arches National Park Rd', 'Grand', 'Moab', 84532);
 INSERT INTO Location VALUES( 1, 'Montana-Wyoming', 'North Entrance Rd-2 Officers Row', 'Teton-Gallatin', 'Gardiner-Cody', 59030-82190);
 
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 SELECT ownerName, amount FROM Permits, Fees
 WHERE Permits.type = Fees.permitType
 AND Permits.parkIDNumber = Fees.parkIDNumber
 AND Fees.parkIDNumber =2;
 Print owners and fees of camping permits from Yosemite.
-
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+SELECT name FROM Park WHERE permitType LIKE '%swimming%;
+Print all Parks that allow swimming.
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+SELECT name FROM Parks, Features
+WHERE parkIDNumber = iDNumber
+AND Features.fauna LIKE '%Bear%'
+AND Park.permitType LIKE '%camping%';
+Print all Parks that have bears and allow camping.
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
 
