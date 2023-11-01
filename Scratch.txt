@@ -92,16 +92,60 @@ INSERT INTO Fees VALUES(3, 'hiking', 15.00);
 INSERT INTO Fees VALUES(3, 'backpacking', 20.00);
 INSERT INTO Fees VALUES(3, 'camping', 17.00);
 INSERT INTO Fees VALUES(3, 'rockclimbing', 25.00);
+INSERT INTO Fees VALUES(4, 'hiking', 15.00);
+INSERT INTO Fees VALUES(4, 'camping', 22.00);
+INSERT INTO Fees VALUES(4, 'swimming', 10.00);
+INSERT INTO Fees VALUES(5, 'hiking', 10.00);
+INSERT INTO Fees VALUES(5, 'camping', 19.50);
+INSERT INTO Fees VALUES(5, 'backpacking', 15.00);
+INSERT INTO Fees VALUES(5, 'fishing', 8.00);
+INSERT INTO Fees VALUES(5, 'rafting', 45.00);
+INSERT INTO Fees VALUES(5, 'rockclimbing', 30.00);
+INSERT INTO Fees VALUES(5, 'swimming', 5.00);
+INSERT INTO Fees VALUES(6, 'camping', 6.00);
+INSERT INTO Fees VALUES(6, 'hiking', 9.00);
+INSERT INTO Fees VALUES(6, 'backpacking', 6.00);
+INSERT INTO Fees VALUES(6, 'rockclimbing', 22.00);
+INSERT INTO Fees VALUES(7, 'rockclimbing', 15.00);
+INSERT INTO Fees VALUES(7, 'hiking', 7.00);
+INSERT INTO Fees VALUES(8, 'hiking', 7.00);
+INSERT INTO Fees VALUES(8, 'swimming', 5.00);
+INSERT INTO Fees VALUES(8, 'fishing', 12.00);
 INSERT INTO Fees VALUES(9, 'hiking', 15.00);
 INSERT INTO Fees VALUES(9, 'swimming', 20.00);
 INSERT INTO Fees VALUES(9, 'fishing', 15.00);
+INSERT INTO Fees VALUES(10, 'hiking', 5.00);
+INSERT INTO Fees VALUES(11, 'hiking', 8.00);
+INSERT INTO Fees VALUES(11, 'camping', 18.00);
+INSERT INTO Fees VALUES(11, 'backpacking', 10.00);
+
 INSERT INTO Fees VALUES(12, 'rockclimbing', 35.00);
 INSERT INTO Fees VALUES(12, 'camping', 15.00);
 INSERT INTO Fees VALUES(12, 'backpacking', 12.00);
 INSERT INTO Fees VALUES(12, 'hiking', 10.00);
 INSERT INTO Fees VALUES(12, 'mountaineering', 40.00);
-
-
+INSERT INTO Fees VALUES(13, 'hiking', 12.00);
+INSERT INTO Fees VALUES(13, 'camping', 22.00);
+INSERT INTO Fees VALUES(13, 'backpacking', 12.00);
+INSERT INTO Fees VALUES(14, 'hiking', 12.00);
+INSERT INTO Fees VALUES(14, 'camping', 24.00);
+INSERT INTO Fees VALUES(14, 'backpacking', 12.00);
+INSERT INTO Fees VALUES(15, 'hiking', 9.00);
+INSERT INTO Fees VALUES(15, 'camping', 25.00);
+INSERT INTO Fees VALUES(15, 'backpacking', 12.00);
+INSERT INTO Fees VALUES(16, 'hiking', 8.00);
+INSERT INTO Fees VALUES(16, 'camping', 21.00);
+INSERT INTO Fees VALUES(16, 'backpacking', 9.00);
+INSERT INTO Fees VALUES(16, 'fishing', 21.50);
+INSERT INTO Fees VALUES(17, 'hiking', 19.00);
+INSERT INTO Fees VALUES(18, 'hiking', 14.00);
+INSERT INTO Fees VALUES(19, 'hiking', 12.00);
+INSERT INTO Fees VALUES(20, 'hiking', 10.00);
+INSERT INTO Fees VALUES(20, 'swimming', 8.00);
+INSERT INTO Fees VALUES(20, 'fishing', 15.00);
+INSERT INTO Fees VALUES(21, 'hiking', 17.00);
+INSERT INTO Fees VALUES(21, 'swimming', 5.00);
+INSERT INTO Fees VALUES(21, 'fishing', 12.00);
 
 
 Location ( parkIDNumber Int(15), state varchar(10), address varchar(25), county varchar(25), city varchar(45), zipcode Int(14)
@@ -154,7 +198,7 @@ FROM Park
 WHERE Park.name = 'Shenandoah';
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Print Name, Designation & addresss of all parks in California
-SELECT name, designation, address 
+SELECT DISTINCT name, designation, address, city, zipcode
 FROM Park, Location
 WHERE Location.state = 'California'
 AND Location.parkIdNumber = Park.iDNumber;
