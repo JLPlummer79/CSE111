@@ -1,8 +1,8 @@
 CREATE TABLE Permits( parkIDNumber Int(15), IdNumber Int(20), ownerName varchar(45), type varchar(25), duration int(3), startDate TEXT(), end-date TEXT()
 );
-INSERT INTO Permits VALUES( 5, 1, 'Royal Robbins', 'rockclimbing', 30, '2023-07-01', '2023-08-01');
-INSERT INTO Permits VALUES( 5, 2, 'John Long', 'rockclimbing', 30, '2023-07-01', '2023-08-01');
-INSERT INTO Permits VALUES( 5, 3, 'John Bachar', 'rockclimbing', 30, '2023-07-01', '2023-08-01');
+INSERT INTO Permits VALUES( 2, 1, 'Royal Robbins', 'rockclimbing', 30, '2023-07-01', '2023-08-01');
+INSERT INTO Permits VALUES( 2, 2, 'John Long', 'rockclimbing', 30, '2023-07-01', '2023-08-01');
+INSERT INTO Permits VALUES( 2, 3, 'John Bachar', 'rockclimbing', 30, '2023-07-01', '2023-08-01');
 INSERT INTO Permits VALUES( 2, 4, 'Warren Harding', 'rockclimbing', 30, '2023-07-01', '2023-08-01');
 INSERT INTO Permits VALUES( 11, 1, 'Mike Piazza', 'camping', 3, '2024-05-01', '2024-05-04');
 INSERT INTO Permits VALUES( 14, 1, 'Thomas Redbook', 'hiking', 1, '2023-10-31', '2023-10-31');
@@ -14,6 +14,7 @@ INSERT INTO Permits VALUES( 12, 1, 'Thomas Finley', 'backpacking', 3, '2023-09-1
 INSERT INTO Permits VALUES( 14, 1, 'Agustine Burnhard', 'backpacking', 12, '2023-10-11', '2023-10-23');
 INSERT INTO Permits VALUES( 16, 1, 'Jim Lee', 'backpacking', 5, '2023-07-11', '2023-07-16');
 INSERT INTO Permits VALUES( 1, 1, 'Albert Einstein', 'backpacking', 13, '2023-07-01', '2023-07-14');
+INSERT INTO Permits VALUES( 1, 2, 'Henry Ford', 'camping', 4, '2023-08-04', '2023-08-4');
 
 
 UPDATE Permits SET parkIdNumber = 2 WHERE type = 'rockclimbing';
@@ -40,7 +41,13 @@ INSERT into Features VALUES(15, 'Appalacian Trail-Clingmans Dome-Newfound Gap-Ca
 CREATE TABLE Staff(employeeIDNumber Int(20), parkIDNumber Int(15), department varchar(20), schedule varchar(50), name varchar(50) );
 
 CREATE TABLE Recreation( parkIDNumber Int(15), permitIDNumber Int(20), activity varchar(25), trailName varchar(50), trailHead varchar(50), road varchar(50), campsiteName varchar(50) );
-INSERT INTO Recreation VALUES(1, 1, 'backpacking', 'Dawson', ' ', ' ');
+INSERT INTO Recreation VALUES(1, 1, 'backpacking', 'Dawson', 'Rose', ' ',' ');
+INSERT INTO Recreation VALUES(2, 1, 'rockclimbing', '-', '-', '-','Camp 4');
+INSERT INTO Recreation VALUES(2, 2, 'rockclimbing', '-', '-', '-','Camp 4');
+INSERT INTO Recreation VALUES(2, 3, 'rockclimbing', '-', '-', '-','Camp 4');
+INSERT INTO Recreation VALUES(2, 4, 'rockclimbing', '-', '-', '-','Camp 4');
+INSERT INTO Recreation VALUES(14, 1, 'hiking', 'Dune Trail', 'Dune', 'Castle Creek','-');
+INSERT INTO Recreation VALUES(11, 1, 'camping', '-', '-', 'Park Rd','Cochise');
 
 UPDATE Park SET permitType = 'hiking-backpacking-camping-swimming-fishing' WHERE name = 'Yellowstone';
 UPDATE Park SET permitType = 'hiking-backpacking-camping-swimming-rockclimbing-fishing' WHERE name = 'Yosemite';
@@ -85,6 +92,11 @@ INSERT INTO Fees VALUES(3, 'hiking', 15.00);
 INSERT INTO Fees VALUES(3, 'backpacking', 20.00);
 INSERT INTO Fees VALUES(3, 'camping', 17.00);
 INSERT INTO Fees VALUES(3, 'rockclimbing', 25.00);
+INSERT INTO Fees VALUES(9, 'hiking', 15.00);
+INSERT INTO Fees VALUES(9, 'swimming', 20.00);
+INSERT INTO Fees VALUES(9, 'fishing', 15.00);
+
+
 
 
 Location ( parkIDNumber Int(15), state varchar(10), address varchar(25), county varchar(25), city varchar(45), zipcode Int(14)
@@ -125,6 +137,11 @@ WHERE parkIDNumber = iDNumber
 AND Features.fauna LIKE '%Bear%'
 AND Park.permitType LIKE '%camping%';
 Print all Parks that have bears and allow camping.
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+INSERT into Park VALUES(1, NationalPark, M-Sun 8:00 - 17:00, 12, hiking-backpacking-camping-swimming, Yellowstone);
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+CREATE TABLE Features( parkIDNumber Int(15), featureName varchar(200), structures varchar(150), flora varchar(200), fauna 
+varchar(200) );
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
