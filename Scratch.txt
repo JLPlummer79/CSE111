@@ -95,6 +95,11 @@ INSERT INTO Fees VALUES(3, 'rockclimbing', 25.00);
 INSERT INTO Fees VALUES(9, 'hiking', 15.00);
 INSERT INTO Fees VALUES(9, 'swimming', 20.00);
 INSERT INTO Fees VALUES(9, 'fishing', 15.00);
+INSERT INTO Fees VALUES(12, 'rockclimbing', 35.00);
+INSERT INTO Fees VALUES(12, 'camping', 15.00);
+INSERT INTO Fees VALUES(12, 'backpacking', 12.00);
+INSERT INTO Fees VALUES(12, 'hiking', 10.00);
+INSERT INTO Fees VALUES(12, 'mountaineering', 40.00);
 
 
 
@@ -143,8 +148,17 @@ INSERT into Park VALUES(1, NationalPark, M-Sun 8:00 - 17:00, 12, hiking-backpack
 CREATE TABLE Features( parkIDNumber Int(15), featureName varchar(200), structures varchar(150), flora varchar(200), fauna 
 varchar(200) );
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-
+Print all activities from Shenandoah National Park.
+SELECT permitType AS Activities 
+FROM Park
+WHERE Park.name = 'Shenandoah';
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Print Name, Designation & addresss of all parks in California
+SELECT name, designation, address 
+FROM Park, Location
+WHERE Location.state = 'California'
+AND Location.parkIdNumber = Park.iDNumber;
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 #Lab 7 Stuff
 statement = 'create table warehouse (w_warehousekey decimal(9,0) w_name char(100),...)'
