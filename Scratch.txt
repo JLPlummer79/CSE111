@@ -1,0 +1,104 @@
+CREATE TABLE Permits( parkIDNumber Int(15), IdNumber Int(20), ownerName varchar(45), type varchar(25), duration int(3), startDate TEXT(), end-date TEXT()
+);
+INSERT INTO Permits VALUES( 5, 1, 'Royal Robbins', 'rockclimbing', 30, '2023-07-01', '2023-08-01');
+INSERT INTO Permits VALUES( 5, 2, 'John Long', 'rockclimbing', 30, '2023-07-01', '2023-08-01');
+INSERT INTO Permits VALUES( 5, 3, 'John Bachar', 'rockclimbing', 30, '2023-07-01', '2023-08-01');
+INSERT INTO Permits VALUES( 2, 4, 'Warren Harding', 'rockclimbing', 30, '2023-07-01', '2023-08-01');
+INSERT INTO Permits VALUES( 11, 1, 'Mike Piazza', 'camping', 3, '2024-05-01', '2024-05-04');
+INSERT INTO Permits VALUES( 14, 1, 'Thomas Redbook', 'hiking', 1, '2023-10-31', '2023-10-31');
+INSERT INTO Permits VALUES( 2, 5, 'Scrooge McDuck', 'camping', 2, '2023-12-30', '2023-12-31');
+
+
+UPDATE Permits SET parkIdNumber = 1 WHERE type = 'rockclimbing';
+
+CREATE TABLE Features( parkIDNumber Int(15), featureName varchar(200), structures varchar(150), flora varchar(200), fauna varchar(200) );
+INSERT into Features VALUES(1, 'Old Faithful-Grand Prismatic-Yellowstone Falls-Mudpots', 'visitor centers-hotels-bathrooms-gift shops', 'Lodgepole Pine', 'Bison-Elk-Grizzley Bear-Wolf');
+INSERT into Features VALUES(2, 'Half Dome-Vernal Falls-Upper+Lower Yosemite Falls-Vernal Falls', 'visitor centers-hotels-bathrooms-gift shops', 'Lodgepole Pine', 'Brown Bear-Raccoon-Deer-Chipmunk');
+INSERT into Features VALUES(3, 'Delicate Arch-Windows-Great Wall-Courthouse', 'visitor center-bathrooms-gift shop', 'Chaparael', 'Coyote-Alligator Lizard');
+INSERT into Features VALUES(4, 'Cadillac Mountain-Jordan Pond-Somes Sound', 'visitor center-bathrooms-gift shop-lighthouse', 'Oak-Birch-Choke Cherry', 'Squirell-Deer-Raccoon');
+INSERT into Features VALUES(5, 'Colorado River-South Rim-North Rim', 'visitor centers-bathrooms-gift shops', 'Engleman Spruce-Douglas Fir-Aspen-Mountain Ash', 'Bighornn Sheep-Wild Burros-Coyote-Salamander-Trout-Walleye-Catfish');
+INSERT into Features VALUES(6, 'Kelso Dunes-Clark Mountains-lava flows-lava domes', 'visitor center-bathrooms-gift shops-train station', 'Joshua Tree-Cresote bush-Pinion Juniper-Yucca', 'Tortise-Badger-Coyote');
+INSERT into Features VALUES(7, 'Devils Postpile-Rainbow Falls', 'visitor center-bathrooms-gift shop', 'Lodgepole Pine-White Fir-Red Fir-Willows-Black Cottonwood', 'Black Bear-Pine Marten-Mule Deer');
+INSERT into Features VALUES(8, 'San Andreas Fault-Pacific Ocean-Sand Dunes-Wetlands-Marshes', 'visitor center-bathrooms-gift shop-light house', 'Sky Lupine-California Poppies-Bull Kelp', 'Harbor Seal-Bobcat-Coyote-Elephant Seal-Elk-Califonia Grey Whale');
+INSERT into Features VALUES(9, 'prarie-grassland-ephemeral marshes-ponds', 'visitor center-bathrooms-gift shop', 'Giant Bristle Grass-Sargassum Weed-Roughseed Sea Purslane', 'Ghost Crab-Sheepshead-Redfish-Flounder-Black Drum-Coyote-Deer-Leatherback Sea Turtle-Green Sea Turtle-Kemps Ridley Sea Turtle-Loggerhead Sea Turtle-Hawksbill Sea Turtle');
+INSERT into Features VALUES(10, 'San Diego Harbor-North Island-', 'lighthouse-visitor center-bathrooms-gift shop', 'snake cholla-prickly pear cactus-Mojave yucca-Shaws agave-California coast poppy-Indian paintbrush-California buckwheat-California sagebrush-lemonadeberry', 'Grey Whale-Trapdoor Spider-Great Blue Heron-California Quail-Canyon Bat');
+INSERT into Features VALUES(11, 'mixed grass prarie-sandstones-siltstones-mudstones-claystones-limestones-volcanic ash', 'visitorcenters-bathroom-overlooks', 'Western Wheatgrass-juniper', 'Bison-Pronghorn-Prarie Dog-Rattlesnake');
+INSERT into Features VALUES(12, 'Continental Divide-Glaciers-Mount Ida-McHenrys Peak', 'visitorcenters-bathrooms-boat launch', 'Lichen-Liverwort-Moss-Aspen-Columbine', 'Moose-Bighorn Sheep-Elk-Black Bear-Coyote-Mule Deer-Cougar');
+INSERT into Features VALUES(13, 'Temperate Rainforest-Hoh River-Hall of Mosses Trail-Elwah River-Glaciers-Rialto Beach', 'visitorcenters-bathrooms-boat launch-overlooks', 'Big Leaf Maples-Sitka Spruce-Western Hemlock', 'Mountain Goat-Cougar-Bald Eagle-Black Bear-Elk-Harbor Seal');
+INSERT into Features VALUES(14, 'Star Dune-Mendano Creek-Sangre De Christo Mountains-High Dune', 'visitorcenter-bathrooms', 'Ponderosa Pine-Pinion Juniper-Cottonwood-Aspen-Red Osier Dogwood-Bristlecone Pine-Limber Pine', 'Pika-Ptarmigan-Marmot-Bighorn Sheep-Cougar-Mule Deer-Owl-Dusky Grouse-Turkey-Elk-Pronghorn');
+INSERT into Features VALUES(15, 'Appalacian Trail-Clingmans Dome-Newfound Gap-Cades Cove-Chimney Tops-Andrews Bald', 'visitorcenter-bathrooms', 'Dogwood-Azalea-Sweet Birch-Eastern White Pine-Eastern Red Bud', 'Black Bear-Spotfin Chub-salamanders-River Otter-Elk-Peregrine Falcon-Northern Flying Squirrel');
+
+
+
+CREATE TABLE Staff(employeeIDNumber Int(20), parkIDNumber Int(15), department varchar(20), schedule varchar(50), name varchar(50) );
+
+CREATE TABLE Recreation( parkIDNumber Int(15), permitIDNumber Int(20), activity varchar(25), trailName varchar(50), trailHead varchar(50), road varchar(50), campsiteName varchar(50) );
+
+UPDATE Park SET permitType = 'hiking-backpacking-camping-swimming-fishing' WHERE name = 'Yellowstone';
+UPDATE Park SET permitType = 'hiking-backpacking-camping-swimming-rockclimbing-fishing' WHERE name = 'Yosemite';
+UPDATE Park SET permitType = 'hiking-camping-backpacking-swimming-fishing' WHERE name = 'Great Smokey Mountains';
+
+INSERT into Park VALUES(1, NationalPark, M-Sun 8:00 - 17:00, 12, hiking-backpacking-camping-swimming, Yellowstone);
+INSERT into Park VALUES(2, 'NationalPark', 'Sun-Sat 8:00 - 17:00', 42, 'hiking-backpacking-camping-swimming-rockclimbing', 'Yosemite');
+INSERT into Park VALUES(3, 'NationalPark', 'Sun-Sat 8:00 - 17:00', 42, 'hiking-backpacking-camping-rockclimbing', 'Arches');
+INSERT into Park VALUES(4, 'NationalPark', 'Sun-Sat 8:00 - 17:00', 42, 'hiking-camping-swimming', 'Acadia');
+INSERT into Park VALUES(5, 'NationalPark', 'Sun-Sat 8:00 - 17:00', 42, 'hiking-camping-swimming-rafting-backpacking-rockclimbing-fishing', 'Grand Canyon');
+INSERT into Park VALUES(6, 'NationalMonument', 'Sun-Sat 8:00 - 17:00', 500, 'hiking-camping-backpacking-rockclimbing', 'Mojave');
+INSERT into Park VALUES(7, 'NationalMonument', 'Sun-Sat 8:00 - 17:00', 500, 'hiking-rockclimbing', 'Devils Postpile');
+INSERT into Park VALUES(8, 'NationalSeashore', 'Sun-Sat 8:00 - 17:00', 457, 'hiking-swimming-fishing', 'Point Reyes');
+INSERT into Park VALUES(9, 'NationalSeashore', 'Sun-Sat 8:00 - 17:00', 457, 'hiking-swimming-fishing', 'Padre Island');
+INSERT into Park VALUES(10, 'NationalMonument', 'Sun-Sat 8:00 - 17:00', 500, 'hiking', 'Cabrillo');
+INSERT into Park VALUES(11, 'NationalPark', 'Sun-Sat 8:00 - 17:00', 27, 'hiking-camping-backpacking', 'Badlands');
+INSERT into Park VALUES(12, 'NationalPark', 'Sun-Sat 8:00 - 17:00', 634, 'hiking-camping-backpacking-rockclimbing-mountaineering', 'Rocky Mountain');
+INSERT into Park VALUES(13, 'NationalPark', 'Sun-Sat 8:00 - 17:00', 439, 'hiking-camping-backpacking', 'Olympic');
+INSERT into Park VALUES(14, 'NationalPark', 'Sun-Sat 8:00 - 17:00', 350, 'hiking-camping-backpacking', 'Great Sand Dunes');
+INSERT into Park VALUES(15, 'NationalPark', 'Sun-Sat 8:00 - 17:00', 475, 'hiking-camping-backpacking', 'Great Smokey Mountains');
+INSERT into Park VALUES(16, 'NationalPark', 'Sun-Sat 8:00 - 17:00', 475, 'hiking-camping-backpacking-fishing', 'Shenandoah');
+INSERT into Park VALUES(17, 'NationalMonument', 'Sun-Sat 8:00 - 17:00', 500, 'hiking', 'Statue of Liberty');
+INSERT into Park VALUES(18, 'NationalMonument', 'Sun-Sat 8:00 - 17:00', 58, 'hiking', 'John Day Fossil Beds');
+INSERT into Park VALUES(19, 'NationalMonument', 'Sun-Sat 8:00 - 17:00', 101, 'hiking', 'Rainbow Bridge');
+INSERT into Park VALUES(20, 'NationalSeashore', 'Sun-Sat 8:00 - 17:00', 457, 'hiking-swimming-fishing', 'Cape Cod');
+INSERT into Park VALUES(21, 'NationalSeashore', 'Sun-Sat 8:00 - 17:00', 87, 'hiking-swimming-fishing', 'Assateague Island');
+
+CREATE TABLE Fees( parkIDNumber Int(15), permitType varchar(24), amount decimal(15));
+INSERT INTO Fees VALUES(1, 'hiking', 15.00);
+INSERT INTO Fees VALUES(1, 'backpacking', 20.00);
+INSERT INTO Fees VALUES(1, 'camping', 17.00);
+INSERT INTO Fees VALUES(1, 'swimming', 16.00);
+INSERT INTO Fees VALUES(1, 'fishing', 13.00);
+INSERT INTO Fees VALUES(2, 'hiking', 15.00);
+INSERT INTO Fees VALUES(2, 'backpacking', 20.00);
+INSERT INTO Fees VALUES(2, 'camping', 17.00);
+INSERT INTO Fees VALUES(2, 'swimming', 16.00);
+INSERT INTO Fees VALUES(2, 'fishing', 13.00);
+INSERT INTO Fees VALUES(2, 'rockclimbing', 25.00);
+
+
+Location ( parkIDNumber Int(15), state varchar(10), address varchar(25), county varchar(25), city varchar(45), zipcode Int(14)
+ );
+INSERT INTO Location VALUES( 21, 'Maryland-Virginia', '7206 Naional Seashore Ln-8586 Beach Rd', 'Worcester-Accomack', 'Berlin-Chincoteague', 21811);
+INSERT INTO Location VALUES( 20, 'Massachusetts', '50 Nauset Rd', 'Barnstable', 'Eastham', 02642);
+INSERT INTO Location VALUES( 19, 'Utah', 'Forbidding Canyon Lake', 'San Juan', 'Powell', 84533);
+INSERT INTO Location VALUES( 18, 'Oregon', '32651 Highway 19', 'Wheeler-Grant', 'Kimberly', 97848);
+INSERT INTO Location VALUES( 17, 'New York', 'Liberty Island', 'New York', 'New York', 10004);
+INSERT INTO Location VALUES( 16, 'Virginia', '21073 Skyline Dr', 'Warren', 'Front Royal', 22630);
+INSERT INTO Location VALUES( 15, 'Tennessee', '107 Park Headquarters Rd', 'Sevier', 'Gatlinburg', 37738);
+INSERT INTO Location VALUES( 14, 'Colorado', 'Visitor Center 11999 State Highway 150', 'Saguache-Alamosa', 'Mosca', 81146);
+INSERT INTO Location VALUES( 13, 'Washington', '3002 Mt Angeles Rd', 'Jefferson', 'Port Angeles', 98362);
+INSERT INTO Location VALUES( 12, 'Colorado', '1000 US Hwy 36', 'Larimer', 'Estes Park', 80517);
+INSERT INTO Location VALUES( 11, 'South Dakota', '25216 Ben Reifel Rd', 'Oglala Lakota', 'Interior', 57750);
+INSERT INTO Location VALUES( 10, 'California', '1800 Cabrillo Memorial Dr', 'San Diego', 'San Diego', 92106);
+INSERT INTO Location VALUES( 9, 'Texas', '20420 Park Rd 22', 'Kleberg', 'Corpus Christi', 92106);
+INSERT INTO Location VALUES( 8, 'California', '1 Bear Valley Rd', 'Marin', 'Point Reyes Station', 94956);
+INSERT INTO Location VALUES( 7, 'California', 'Devils Postpile Rd', 'Madera', 'Mammoth Lakes', 93546);
+INSERT INTO Location VALUES( 6, 'California', '90942 Kelso Cima Rd', 'San Bernardino', 'Essex', 92332);
+INSERT INTO Location VALUES( 5, 'Arizona', '20 South Entrance Rd', 'Mohave', 'Grand Canyon', 86023);
+INSERT INTO Location VALUES( 4, 'Maine', '25 Visitor Center Rd', 'Hancock-Knox', 'Bar Harbor', 04609);
+INSERT INTO Location VALUES( 3, 'Utah', 'Arches National Park Rd', 'Grand', 'Moab', 84532);
+INSERT INTO Location VALUES( 1, 'Montana-Wyoming', 'North Entrance Rd-2 Officers Row', 'Teton-Gallatin', 'Gardiner-Cody', 59030-82190);
+
+
+#Lab 7 Stuff
+statement = 'create table warehouse (w_warehousekey decimal(9,0) w_name char(100),...)'
+statement = r"select row_number(), ...\
+into warehouse ..."
