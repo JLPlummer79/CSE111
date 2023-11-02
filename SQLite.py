@@ -108,16 +108,25 @@ def dropTables(_conn):
     print("Drop tables")
 
     try:
-        sql = "DROP TABLE Product"
+        sql = "DROP TABLE Park"
         _conn.execute(sql)
 
-        sql = "DROP TABLE PC"
+        sql = "DROP TABLE Features"
         _conn.execute(sql)
 
-        sql = "DROP TABLE Laptop"
+        sql = "DROP TABLE Fees"
         _conn.execute(sql)
 
-        sql = "DROP TABLE Printer"
+        sql = "DROP TABLE Permits"
+        _conn.execute(sql)
+
+        sql = "DROP TABLE Location"
+        _conn.execute(sql)
+
+        sql = "DROP TABLE Recreation"
+        _conn.execute(sql)
+
+        sql = "DROP TABLE Staff"
         _conn.execute(sql)
 
         _conn.commit()
@@ -129,53 +138,37 @@ def dropTables(_conn):
     print("++++++++++++++++++++++++++++++++++")
 
 
-def populateTable_Product(_conn):
+def populateTable_Park(_conn):
     print("++++++++++++++++++++++++++++++++++")
-    print("Populate PRODUCT")
+    print("Populate Park")
 
     try:
-        products = [
-            ('A', 1001, 'pc'),
-            ('A', 1002, 'pc'),
-            ('A', 1003, 'pc'),
-            ('A', 2004, 'laptop'),
-            ('A', 2005, 'laptop'),
-            ('A', 2006, 'laptop'),
-
-            ('B', 1004, 'pc'),
-            ('B', 1005, 'pc'),
-            ('B', 1006, 'pc'),
-            ('B', 2007, 'laptop'),
-
-            ('C', 1007, 'pc'),
-
-            ('D', 1008, 'pc'),
-            ('D', 1009, 'pc'),
-            ('D', 1010, 'pc'),
-            ('D', 3004, 'printer'),
-            ('D', 3005, 'printer'),
-
-            ('E', 1011, 'pc'),
-            ('E', 1012, 'pc'),
-            ('E', 1013, 'pc'),
-            ('E', 2001, 'laptop'),
-            ('E', 2002, 'laptop'),
-            ('E', 2003, 'laptop'),
-            ('E', 3001, 'printer'),
-            ('E', 3002, 'printer'),
-            ('E', 3003, 'printer'),
-
-            ('F', 2008, 'laptop'),
-            ('F', 2009, 'laptop'),
-
-            ('G', 2010, 'laptop'),
-
-            ('H', 3006, 'printer'),
-            ('H', 3007, 'printer')
+        parks = [
+            (1, 'NationalPark', 'M-Sun 8:00 - 17:00', 12, 'hiking-backpacking-camping-swimming', 'Yellowstone'),
+            (2, 'NationalPark', 'Sun-Sat 8:00 - 17:00', 42, 'hiking-backpacking-camping-swimming-rockclimbing', 'Yosemite'),
+            (3, 'NationalPark', 'Sun-Sat 8:00 - 17:00', 42, 'hiking-backpacking-camping-rockclimbing', 'Arches'),
+            (4, 'NationalPark', 'Sun-Sat 8:00 - 17:00', 42, 'hiking-camping-swimming', 'Acadia'),
+            (5, 'NationalPark', 'Sun-Sat 8:00 - 17:00', 42, 'hiking-camping-swimming-rafting-backpacking-rockclimbing-fishing', 'Grand Canyon'),
+            (6, 'NationalMonument', 'Sun-Sat 8:00 - 17:00', 500, 'hiking-camping-backpacking-rockclimbing', 'Mojave'),
+            (7, 'NationalMonument', 'Sun-Sat 8:00 - 17:00', 500, 'hiking-rockclimbing', 'Devils Postpile'),
+            (8, 'NationalSeashore', 'Sun-Sat 8:00 - 17:00', 457, 'hiking-swimming-fishing', 'Point Reyes'),
+            (9, 'NationalSeashore', 'Sun-Sat 8:00 - 17:00', 457, 'hiking-swimming-fishing', 'Padre Island'),
+            (10, 'NationalMonument', 'Sun-Sat 8:00 - 17:00', 500, 'hiking', 'Cabrillo'),
+            (11, 'NationalPark', 'Sun-Sat 8:00 - 17:00', 27, 'hiking-camping-backpacking', 'Badlands'),
+            (12, 'NationalPark', 'Sun-Sat 8:00 - 17:00', 634, 'hiking-camping-backpacking-rockclimbing-mountaineering', 'Rocky Mountain'),
+            (13, 'NationalPark', 'Sun-Sat 8:00 - 17:00', 439, 'hiking-camping-backpacking', 'Olympic'),
+            (14, 'NationalPark', 'Sun-Sat 8:00 - 17:00', 350, 'hiking-camping-backpacking', 'Great Sand Dunes'),
+            (15, 'NationalPark', 'Sun-Sat 8:00 - 17:00', 475, 'hiking-camping-backpacking', 'Great Smokey Mountains'),
+            (16, 'NationalPark', 'Sun-Sat 8:00 - 17:00', 475, 'hiking-camping-backpacking-fishing', 'Shenandoah'),
+            (17, 'NationalMonument', 'Sun-Sat 8:00 - 17:00', 500, 'hiking', 'Statue of Liberty'),
+            (18, 'NationalMonument', 'Sun-Sat 8:00 - 17:00', 58, 'hiking', 'John Day Fossil Beds'),
+            (19, 'NationalMonument', 'Sun-Sat 8:00 - 17:00', 101, 'hiking', 'Rainbow Bridge'),
+            (20, 'NationalSeashore', 'Sun-Sat 8:00 - 17:00', 457, 'hiking-swimming-fishing', 'Cape Cod'),
+            (21, 'NationalSeashore', 'Sun-Sat 8:00 - 17:00', 87, 'hiking-swimming-fishing', 'Assateague Island')
         ]
 
-        sql = "INSERT INTO Product VALUES(?, ?, ?)"
-        _conn.executemany(sql, products)
+        sql = "INSERT INTO Park VALUES(?, ?, ?)"
+        _conn.executemany(sql, parks)
 
         _conn.commit()
         print("success")
@@ -186,14 +179,14 @@ def populateTable_Product(_conn):
     print("++++++++++++++++++++++++++++++++++")
 
 
-def insert_PC(_conn, _model, _speed, _ram, _hd, _price):
+def insert_Fee(_conn, _parkID, _permitType, _amt):
     print("++++++++++++++++++++++++++++++++++")
-    print("Insert PC")
+    print("Insert Fee")
 
     try:
-        sql = """INSERT INTO PC(model, speed, ram, hd, price)
-            VALUES(?, ?, ?, ?, ?)"""
-        args = [_model, _speed, _ram, _hd, _price]
+        sql = """INSERT INTO Fees(parkIDNumber, permitType, amount)
+            VALUES(?, ?, ?)"""
+        args = [_parkID, _permitType, _amt]
         _conn.execute(sql, args)
 
         _conn.commit()
@@ -205,23 +198,80 @@ def insert_PC(_conn, _model, _speed, _ram, _hd, _price):
     print("++++++++++++++++++++++++++++++++++")
 
 
-def populateTable_PC(_conn):
+def populateTable_Fees(_conn):
     print("++++++++++++++++++++++++++++++++++")
     print("Populate PC")
 
-    insert_PC(_conn, 1001, 2.66, 1024, 250, 2114)
-    insert_PC(_conn, 1002, 2.10, 512, 250, 995)
-    insert_PC(_conn, 1003, 1.42, 512, 80, 478)
-    insert_PC(_conn, 1004, 2.80, 1024, 250, 649)
-    insert_PC(_conn, 1005, 3.20, 512, 250, 630)
-    insert_PC(_conn, 1006, 3.20, 1024, 320, 1049)
-    insert_PC(_conn, 1007, 2.20, 1024, 200, 510)
-    insert_PC(_conn, 1008, 2.20, 2048, 250, 770)
-    insert_PC(_conn, 1009, 2.00, 1024, 250, 650)
-    insert_PC(_conn, 1010, 2.80, 2048, 300, 770)
-    insert_PC(_conn, 1011, 1.86, 2048, 160, 959)
-    insert_PC(_conn, 1012, 2.80, 1024, 160, 649)
-    insert_PC(_conn, 1013, 3.06, 512, 80, 529)
+    
+    insert_Fee(1, 'hiking', 15.00)
+    insert_Fee(1, 'backpacking', 20.00)
+    insert_Fee(1, 'camping', 17.00)
+    insert_Fee(1, 'swimming', 16.00)
+    insert_Fee(1, 'fishing', 13.00)
+    insert_Fee(2, 'hiking', 15.00)
+    insert_Fee(2, 'backpacking', 20.00)
+    insert_Fee(2, 'camping', 17.00)
+    insert_Fee(2, 'swimming', 16.00)
+    insert_Fee(2, 'fishing', 13.00)
+    insert_Fee(2, 'rockclimbing', 25.00)
+    insert_Fee(3, 'hiking', 15.00)
+    insert_Fee(3, 'backpacking', 20.00)
+    insert_Fee(3, 'camping', 17.00)
+    insert_Fee(3, 'rockclimbing', 25.00)
+    insert_Fee(4, 'hiking', 15.00)
+    insert_Fee(4, 'camping', 22.00)
+    insert_Fee(4, 'swimming', 10.00)
+    insert_Fee(5, 'hiking', 10.00)
+    insert_Fee(5, 'camping', 19.50)
+    insert_Fee(5, 'backpacking', 15.00)
+    insert_Fee(5, 'fishing', 8.00)
+    insert_Fee(5, 'rafting', 45.00)
+    insert_Fee(5, 'rockclimbing', 30.00)
+    insert_Fee(5, 'swimming', 5.00)
+    insert_Fee(6, 'camping', 6.00)
+    insert_Fee(6, 'hiking', 9.00)
+    insert_Fee(6, 'backpacking', 6.00)
+    insert_Fee(6, 'rockclimbing', 22.00)
+    insert_Fee(7, 'rockclimbing', 15.00)
+    insert_Fee(7, 'hiking', 7.00)
+    insert_Fee(8, 'hiking', 7.00)
+    insert_Fee(8, 'swimming', 5.00)
+    insert_Fee(8, 'fishing', 12.00)
+    insert_Fee(9, 'hiking', 15.00)
+    insert_Fee(9, 'swimming', 20.00)
+    insert_Fee(9, 'fishing', 15.00)
+    insert_Fee(10, 'hiking', 5.00)
+    insert_Fee(11, 'hiking', 8.00)
+    insert_Fee(11, 'camping', 18.00)
+    insert_Fee(11, 'backpacking', 10.00)
+
+    insert_Fee(12, 'rockclimbing', 35.00)
+    insert_Fee(12, 'camping', 15.00)
+    insert_Fee(12, 'backpacking', 12.00)
+    insert_Fee(12, 'hiking', 10.00)
+    insert_Fee(12, 'mountaineering', 40.00)
+    insert_Fee(13, 'hiking', 12.00)
+    insert_Fee(13, 'camping', 22.00)
+    insert_Fee(13, 'backpacking', 12.00)
+    insert_Fee(14, 'hiking', 12.00)
+    insert_Fee(14, 'camping', 24.00)
+    insert_Fee(14, 'backpacking', 12.00)
+    insert_Fee(15, 'hiking', 9.00)
+    insert_Fee(15, 'camping', 25.00)
+    insert_Fee(15, 'backpacking', 12.00)
+    insert_Fee(16, 'hiking', 8.00)
+    insert_Fee(16, 'camping', 21.00)
+    insert_Fee(16, 'backpacking', 9.00)
+    insert_Fee(16, 'fishing', 21.50)
+    insert_Fee(17, 'hiking', 19.00)
+    insert_Fee(18, 'hiking', 14.00)
+    insert_Fee(19, 'hiking', 12.00)
+    insert_Fee(20, 'hiking', 10.00)
+    insert_Fee(20, 'swimming', 8.00)
+    insert_Fee(20, 'fishing', 15.00)
+    insert_Fee(21, 'hiking', 17.00)
+    insert_Fee(21, 'swimming', 5.00)
+    insert_Fee(21, 'fishing', 12.00)
 
     print("success")
     print("++++++++++++++++++++++++++++++++++")
@@ -300,8 +350,8 @@ def populateTable_Printer(_conn):
 
 
 def populateTables(_conn):
-    populateTable_Product(_conn)
-    populateTable_PC(_conn)
+    populateTable_Parks(_conn)
+    populateTable_Fees(_conn)
     populateTable_Laptop(_conn)
     populateTable_Printer(_conn)
 
