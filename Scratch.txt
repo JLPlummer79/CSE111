@@ -40,6 +40,26 @@ INSERT into Features VALUES(15, 'Appalacian Trail-Clingmans Dome-Newfound Gap-Ca
 
 CREATE TABLE Staff(employeeIDNumber Int(20), parkIDNumber Int(15), department varchar(20), schedule varchar(50), name varchar(50) );
 
+INSERT INTO Staff VALUES (1, 1, 'JANITORIAL', 'M__T_SS', 'Richard Sheryl');
+INSERT INTO Staff VALUES (2, 3, 'RANGER', 'MTWT__S', 'Sherry Woods');
+INSERT INTO Staff VALUES (3, 5, 'FIRE_DEPARTMENT', 'MT___SS', 'Michael Osborn');
+INSERT INTO Staff VALUES (4, 7, 'FIRE_DEPARTMENT', 'MTWTFSS', 'Louie Von Hatter');
+INSERT INTO Staff VALUES (5, 9, 'JANITORIAL', '__WTFS_', 'Richard Doberman');
+INSERT INTO Staff VALUES (6, 10, 'VISITOR_CENTER', 'M__TFSS', 'Carlson Ford');
+INSERT INTO Staff VALUES (7, 3, 'INTERNAL_AFFAIRS', 'MTW_FSS', 'Harrison Shepherd');
+INSERT INTO Staff VALUES (8, 6, 'RANGER', 'MTWT__S', 'Alex Benjamin');
+INSERT INTO Staff VALUES (9, 12, 'JANITORIAL', 'MT_TF_S', 'Cherry Groveson');
+INSERT INTO Staff VALUES (10, 14, 'FIRE_DEPARTMENT', '___TF_S', 'Adam Sandson');
+INSERT INTO Staff VALUES (11, 1, 'RANGER', 'M_WT__S', 'Leo Skywalker');
+INSERT INTO Staff VALUES (12, 3, 'INTERNAL_AFFAIRS', 'M__T_SS', 'Timothy Stockson');
+INSERT INTO Staff VALUES (13, 9, 'VISITOR_CENTER', '__WTFSS', 'Grover Berry');
+INSERT INTO Staff VALUES (14, 21, 'RANGER', 'MT___SS', 'Adam Sandson');
+INSERT INTO Staff VALUES (15, 18, 'JANITORIAL', 'M_WTFSS', 'Roger Cameron');
+INSERT INTO Staff VALUES (16, 15, 'MANAGEMENT', 'MTW_F__', 'Rico Diesel');
+INSERT INTO Staff VALUES (17, 17, 'MANAGEMENT', 'MT__FSS', 'Alexis Sheema');
+INSERT INTO Staff VALUES (18, 17, 'JANITORIAL', 'MT_TFSS', 'Harry Porter');
+
+
 CREATE TABLE Recreation( parkIDNumber Int(15), permitIDNumber Int(20), activity varchar(25), trailName varchar(50), trailHead varchar(50), road varchar(50), campsiteName varchar(50) );
 INSERT INTO Recreation VALUES(1, 1, 'backpacking', 'Dawson', 'Rose', ' ',' ');
 INSERT INTO Recreation VALUES(2, 1, 'rockclimbing', '-', '-', '-','Camp 4');
