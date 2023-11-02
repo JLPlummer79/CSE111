@@ -456,6 +456,39 @@ def actInShenandoah(_conn):
         print(e)
 
     print("++++++++++++++++++++++++++++++++++")
+
+def typesOfPark(_conn):
+    print("++++++++++++++++++++++++++++++++++")
+
+    print("Names and Designations of all parks in CA")
+
+    try:
+        sql = """SELECT DISTINCT name, designation, address, city, zipcode
+                    FROM Park, Location
+                    WHERE Location.state = 'California'
+                    AND Location.parkIdNumber = Park.iDNumber"""
+        
+        cur = _conn.cursor()
+        cur.execute(sql)
+        l = '{:>10} {:>10} {:>10}'.format("Name", "Designation", "Address")
+        print(l)
+        print("-------------------------------")
+
+        rows = cur.fetchall()
+        for row in rows:
+            l = '{:>10} {:>10} {:>10}'.format(row[0], row[1], row[2])
+            print(l)        
+
+    except Error as e:
+        print(e)
+
+
+
+    print("++++++++++++++++++++++++++++++++++")
+
+
+
+
 # def pcsByMaker(_conn, _maker):
 #     print("++++++++++++++++++++++++++++++++++")
 #     print("PCs by maker: ", _maker)
@@ -567,6 +600,7 @@ def main():
         cmpPermitsFees(conn)
         parksHvBearsCamping(conn)
         actInShenandoah(conn)
+        typesOfPark(conn)
 
       #  pcsByMaker(conn, "E")
       #  productByMaker(conn, "Laptop", "E")
