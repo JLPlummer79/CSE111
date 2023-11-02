@@ -277,181 +277,206 @@ def populateTable_Fees(_conn):
     print("++++++++++++++++++++++++++++++++++")
 
 
-def insert_Laptop(_conn, _model, _speed, _ram, _hd, _screen, _price):
+# def insert_Laptop(_conn, _model, _speed, _ram, _hd, _screen, _price):
+#     print("++++++++++++++++++++++++++++++++++")
+#     print("Insert Laptop")
+
+#     try:
+#         sql = "INSERT INTO Laptop VALUES(?, ?, ?, ?, ?, ?)"
+#         args = [_model, _speed, _ram, _hd, _screen, _price]
+#         _conn.execute(sql, args)
+
+#         _conn.commit()
+#         print("success")
+#     except Error as e:
+#         _conn.rollback()
+#         print(e)
+
+#     print("++++++++++++++++++++++++++++++++++")
+
+
+# def populateTable_Laptop(_conn):
+#     print("++++++++++++++++++++++++++++++++++")
+#     print("Populate Laptop")
+
+#     insert_Laptop(_conn, 2001, 2.00, 2048, 240, 20.1, 3673)
+#     insert_Laptop(_conn, 2002, 1.73, 1024, 80, 17.0, 949)
+#     insert_Laptop(_conn, 2003, 1.80, 512, 60, 15.4, 549)
+#     insert_Laptop(_conn, 2004, 2.00, 512, 60, 13.3, 1150)
+#     insert_Laptop(_conn, 2005, 2.16, 1024, 120, 17.0, 2500)
+#     insert_Laptop(_conn, 2006, 2.00, 2048, 80, 15.4, 1700)
+#     insert_Laptop(_conn, 2007, 1.83, 1024, 120, 13.3, 1429)
+#     insert_Laptop(_conn, 2008, 1.60, 1024, 100, 15.4, 900)
+#     insert_Laptop(_conn, 2009, 1.60, 512, 80, 14.1, 680)
+#     insert_Laptop(_conn, 2010, 2.00, 2048, 160, 15.4, 2300)
+
+#     print("success")
+#     print("++++++++++++++++++++++++++++++++++")
+
+
+# def insert_Printer(_conn, _model, _color, _type, _price):
+#     print("++++++++++++++++++++++++++++++++++")
+#     print("Insert Printer")
+
+#     try:
+#         sql = """INSERT INTO Printer(model, color, type, price)
+#                 VALUES(?, ?, ?, ?)"""
+#         args = [_model, _color, _type, _price]
+#         _conn.execute(sql, args)
+
+#         _conn.commit()
+#         print("success")
+#     except Error as e:
+#         _conn.rollback()
+#         print(e)
+
+#     print("++++++++++++++++++++++++++++++++++")
+
+
+# def populateTable_Printer(_conn):
+#     print("++++++++++++++++++++++++++++++++++")
+#     print("Populate Printer")
+
+#     insert_Printer(_conn, 3001, True, "ink-jet", 99)
+#     insert_Printer(_conn, 3002, False, "laser", 239)
+#     insert_Printer(_conn, 3003, True, "laser", 899)
+#     insert_Printer(_conn, 3004, True, "ink-jet", 120)
+#     insert_Printer(_conn, 3005, False, "laser", 120)
+#     insert_Printer(_conn, 3006, True, "ink-jet", 100)
+#     insert_Printer(_conn, 3007, True, "laser", 200)
+
+#     print("success")
+#     print("++++++++++++++++++++++++++++++++++")
+
+
+# def populateTables(_conn):
+#     #populateTable_Park(_conn)
+#     #populateTable_Fees(_conn)
+#     # populateTable_Laptop(_conn)
+#     # populateTable_Printer(_conn)
+
+
+def parksAllowSwimming(_conn):
     print("++++++++++++++++++++++++++++++++++")
-    print("Insert Laptop")
+    print("Parks that allow swimming")
 
     try:
-        sql = "INSERT INTO Laptop VALUES(?, ?, ?, ?, ?, ?)"
-        args = [_model, _speed, _ram, _hd, _screen, _price]
-        _conn.execute(sql, args)
-
-        _conn.commit()
-        print("success")
-    except Error as e:
-        _conn.rollback()
-        print(e)
-
-    print("++++++++++++++++++++++++++++++++++")
-
-
-def populateTable_Laptop(_conn):
-    print("++++++++++++++++++++++++++++++++++")
-    print("Populate Laptop")
-
-    insert_Laptop(_conn, 2001, 2.00, 2048, 240, 20.1, 3673)
-    insert_Laptop(_conn, 2002, 1.73, 1024, 80, 17.0, 949)
-    insert_Laptop(_conn, 2003, 1.80, 512, 60, 15.4, 549)
-    insert_Laptop(_conn, 2004, 2.00, 512, 60, 13.3, 1150)
-    insert_Laptop(_conn, 2005, 2.16, 1024, 120, 17.0, 2500)
-    insert_Laptop(_conn, 2006, 2.00, 2048, 80, 15.4, 1700)
-    insert_Laptop(_conn, 2007, 1.83, 1024, 120, 13.3, 1429)
-    insert_Laptop(_conn, 2008, 1.60, 1024, 100, 15.4, 900)
-    insert_Laptop(_conn, 2009, 1.60, 512, 80, 14.1, 680)
-    insert_Laptop(_conn, 2010, 2.00, 2048, 160, 15.4, 2300)
-
-    print("success")
-    print("++++++++++++++++++++++++++++++++++")
-
-
-def insert_Printer(_conn, _model, _color, _type, _price):
-    print("++++++++++++++++++++++++++++++++++")
-    print("Insert Printer")
-
-    try:
-        sql = """INSERT INTO Printer(model, color, type, price)
-                VALUES(?, ?, ?, ?)"""
-        args = [_model, _color, _type, _price]
-        _conn.execute(sql, args)
-
-        _conn.commit()
-        print("success")
-    except Error as e:
-        _conn.rollback()
-        print(e)
-
-    print("++++++++++++++++++++++++++++++++++")
-
-
-def populateTable_Printer(_conn):
-    print("++++++++++++++++++++++++++++++++++")
-    print("Populate Printer")
-
-    insert_Printer(_conn, 3001, True, "ink-jet", 99)
-    insert_Printer(_conn, 3002, False, "laser", 239)
-    insert_Printer(_conn, 3003, True, "laser", 899)
-    insert_Printer(_conn, 3004, True, "ink-jet", 120)
-    insert_Printer(_conn, 3005, False, "laser", 120)
-    insert_Printer(_conn, 3006, True, "ink-jet", 100)
-    insert_Printer(_conn, 3007, True, "laser", 200)
-
-    print("success")
-    print("++++++++++++++++++++++++++++++++++")
-
-
-def populateTables(_conn):
-    populateTable_Parks(_conn)
-    populateTable_Fees(_conn)
-    populateTable_Laptop(_conn)
-    populateTable_Printer(_conn)
-
-
-def pcsByMaker(_conn, _maker):
-    print("++++++++++++++++++++++++++++++++++")
-    print("PCs by maker: ", _maker)
-
-    try:
-        sql = """select P.model as model, PC.price as price
-                from Product P, PC
-                where P.model = PC.model AND
-                maker = ?"""
-        args = [_maker]
-
+        sql = """SELECT name 
+                FROM Park 
+                WHERE permitType 
+                LIKE '%swimming%'"""
         cur = _conn.cursor()
-        cur.execute(sql, args)
-
-        l = '{:>10} {:>10}'.format("model", "price")
+        cur.execute(sql)
+        l = '{:>10}'.format("park")
         print(l)
         print("-------------------------------")
 
         rows = cur.fetchall()
         for row in rows:
-            l = '{:>10} {:>10}'.format(row[0], row[1])
+            l = '{:>10}'.format(row[0])
             print(l)
-
+    
     except Error as e:
         print(e)
 
     print("++++++++++++++++++++++++++++++++++")
 
+# def pcsByMaker(_conn, _maker):
+#     print("++++++++++++++++++++++++++++++++++")
+#     print("PCs by maker: ", _maker)
 
-def productByMaker(_conn, _pType, _maker):
-    print("++++++++++++++++++++++++++++++++++")
-    print(_pType, " by maker: ", _maker)
+#     try:
+#         sql = """select P.model as model, PC.price as price
+#                 from Product P, PC
+#                 where P.model = PC.model AND
+#                 maker = ?"""
+#         args = [_maker]
 
-    try:
-        sql = """select P.model as model,
-            {}.price as price
-            from Product P, {}
-            where P.model = {}.model AND
-            maker = ?""".format(_pType, _pType, _pType)
-        args = [_maker]
+#         cur = _conn.cursor()
+#         cur.execute(sql, args)
 
-        cur = _conn.cursor()
-        cur.execute(sql, args)
+#         l = '{:>10} {:>10}'.format("model", "price")
+#         print(l)
+#         print("-------------------------------")
 
-        l = '{:>10} {:>10}'.format("model", "price")
-        print(l)
-        print("-------------------------------")
+#         rows = cur.fetchall()
+#         for row in rows:
+#             l = '{:>10} {:>10}'.format(row[0], row[1])
+#             print(l)
 
-        rows = cur.fetchall()
-        for row in rows:
-            l = '{:>10} {:>10}'.format(row[0], row[1])
-            print(l)
+#     except Error as e:
+#         print(e)
 
-    except Error as e:
-        print(e)
-
-    print("++++++++++++++++++++++++++++++++++")
+#     print("++++++++++++++++++++++++++++++++++")
 
 
-def allProductsByMaker(_conn, _maker):
-    print("++++++++++++++++++++++++++++++++++")
-    print("Products by maker: ", _maker)
+# def productByMaker(_conn, _pType, _maker):
+#     print("++++++++++++++++++++++++++++++++++")
+#     print(_pType, " by maker: ", _maker)
 
-    try:
-        sql = """select P.model as model, P.type as type, PC.price as price
-            from Product P, PC
-            where P.model = PC.model AND
-            maker = ?
-            UNION
-            select P.model as model, P.type as type, L.price as price
-            from Product P, Laptop L
-            where P.model = L.model AND
-            maker = ?
-            UNION
-            select P.model as model, P.type as type, Pr.price as price
-            from Product P, Printer Pr
-            where P.model = Pr.model AND
-            maker = ?"""
-        args = [_maker, _maker, _maker]
+#     try:
+#         sql = """select P.model as model,
+#             {}.price as price
+#             from Product P, {}
+#             where P.model = {}.model AND
+#             maker = ?""".format(_pType, _pType, _pType)
+#         args = [_maker]
 
-        cur = _conn.cursor()
-        cur.execute(sql, args)
+#         cur = _conn.cursor()
+#         cur.execute(sql, args)
 
-        l = '{:>10} {:>20} {:>10}'.format("model", "type", "price")
-        print(l)
-        print("-------------------------------")
+#         l = '{:>10} {:>10}'.format("model", "price")
+#         print(l)
+#         print("-------------------------------")
 
-        rows = cur.fetchall()
-        for row in rows:
-            l = '{:>10} {:>20} {:>10}'.format(row[0], row[1], row[2])
-            print(l)
+#         rows = cur.fetchall()
+#         for row in rows:
+#             l = '{:>10} {:>10}'.format(row[0], row[1])
+#             print(l)
 
-    except Error as e:
-        print(e)
+#     except Error as e:
+#         print(e)
 
-    print("++++++++++++++++++++++++++++++++++")
+#     print("++++++++++++++++++++++++++++++++++")
+
+
+# def allProductsByMaker(_conn, _maker):
+#     print("++++++++++++++++++++++++++++++++++")
+#     print("Products by maker: ", _maker)
+
+#     try:
+#         sql = """select P.model as model, P.type as type, PC.price as price
+#             from Product P, PC
+#             where P.model = PC.model AND
+#             maker = ?
+#             UNION
+#             select P.model as model, P.type as type, L.price as price
+#             from Product P, Laptop L
+#             where P.model = L.model AND
+#             maker = ?
+#             UNION
+#             select P.model as model, P.type as type, Pr.price as price
+#             from Product P, Printer Pr
+#             where P.model = Pr.model AND
+#             maker = ?"""
+#         args = [_maker, _maker, _maker]
+
+#         cur = _conn.cursor()
+#         cur.execute(sql, args)
+
+#         l = '{:>10} {:>20} {:>10}'.format("model", "type", "price")
+#         print(l)
+#         print("-------------------------------")
+
+#         rows = cur.fetchall()
+#         for row in rows:
+#             l = '{:>10} {:>20} {:>10}'.format(row[0], row[1], row[2])
+#             print(l)
+
+#     except Error as e:
+#         print(e)
+
+#     print("++++++++++++++++++++++++++++++++++")
 
 
 def main():
@@ -463,6 +488,7 @@ def main():
         #dropTables(conn)
         #createTables(conn)
         #populateTables(conn)
+        parksAllowSwimming(conn)
 
       #  pcsByMaker(conn, "E")
       #  productByMaker(conn, "Laptop", "E")
