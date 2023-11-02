@@ -406,6 +406,34 @@ def cmpPermitsFees(_conn):
 
     print("++++++++++++++++++++++++++++++++++")
 
+def parksHvBearsCamping(_conn):
+    print("++++++++++++++++++++++++++++++++++")
+
+    print("Parks that have bears and allow camping.")
+
+    try:
+        sql = """SELECT name FROM Park, Features
+                    WHERE parkIDNumber = iDNumber
+                    AND Features.fauna LIKE '%Bear%'
+                    AND Park.permitType LIKE '%camping%'"""
+        
+        cur = _conn.cursor()
+        cur.execute(sql)
+        l = '{:>10}'.format("parks")
+        print(l)
+        print("-------------------------------")
+
+        rows = cur.fetchall()
+        for row in rows:
+            l = '{:>10}'.format(row[0])
+            print(l)
+    except Error as e:
+        print(e)
+
+
+
+    print("++++++++++++++++++++++++++++++++++")
+
 # def pcsByMaker(_conn, _maker):
 #     print("++++++++++++++++++++++++++++++++++")
 #     print("PCs by maker: ", _maker)
@@ -515,6 +543,7 @@ def main():
         #populateTables(conn)
         parksAllowSwimming(conn)
         cmpPermitsFees(conn)
+        parksHvBearsCamping(conn)
 
       #  pcsByMaker(conn, "E")
       #  productByMaker(conn, "Laptop", "E")
