@@ -195,6 +195,7 @@ INSERT INTO Location VALUES( 1, 'Montana-Wyoming', 'North Entrance Rd-2 Officers
 SELECT ownerName, amount FROM Permits, Fees
 WHERE Permits.type = Fees.permitType
 AND Permits.parkIDNumber = Fees.parkIDNumber
+AND Permits.type LIKE '%camping%'
 AND Fees.parkIDNumber =2;
 Print owners and fees of camping permits from Yosemite.
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
