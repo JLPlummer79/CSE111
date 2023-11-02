@@ -430,10 +430,32 @@ def parksHvBearsCamping(_conn):
     except Error as e:
         print(e)
 
-
-
     print("++++++++++++++++++++++++++++++++++")
 
+def actInShenandoah(_conn):
+    print("++++++++++++++++++++++++++++++++++")
+
+    print("Display all activities in Shenandoah National Park.")
+
+    try:
+        sql = """SELECT permitType  
+                    FROM Park
+                    WHERE Park.name = 'Shenandoah'"""
+        cur = _conn.cursor()
+        cur.execute(sql)
+        l = '{:>10}'.format("Activities")
+        print(l)
+        print("-------------------------------")
+
+        rows = cur.fetchall()
+        for row in rows:
+            l = '{:>10}'.format(row[0])
+            print(l)
+
+    except Error as e:
+        print(e)
+
+    print("++++++++++++++++++++++++++++++++++")
 # def pcsByMaker(_conn, _maker):
 #     print("++++++++++++++++++++++++++++++++++")
 #     print("PCs by maker: ", _maker)
@@ -544,6 +566,7 @@ def main():
         parksAllowSwimming(conn)
         cmpPermitsFees(conn)
         parksHvBearsCamping(conn)
+        actInShenandoah(conn)
 
       #  pcsByMaker(conn, "E")
       #  productByMaker(conn, "Laptop", "E")
