@@ -268,6 +268,13 @@ Print Park Operating Hours (user supplied park name)
 SELECT Park.hours, Park.name
 FROM Park
 WHERE Park.name = "Yosemite"                Note: this will be user supplied
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Print Trails at Park (user supplied park name)
+SELECT Park.name, Recreation.trailName
+FROM Park, Recreation
+WHERE Park.iDNumber = Recreation.parkIDNumber
+AND Park.name = 'Great Sand Dunes' Note: this will be user supplied
+
 #Lab 7 Stuff
 statement = 'create table warehouse (w_warehousekey decimal(9,0) w_name char(100),...)'
 statement = r"select row_number(), ...\

@@ -691,6 +691,34 @@ def parkOprHrs(_conn, _park):
 
     print("++++++++++++++++++++++++++++++++++")
 
+def listTrails(_conn, _park):
+    print("++++++++++++++++++++++++++++++++++")
+
+    print("List of Trails from ", _park)
+
+    try:
+        sql = """SELECT Park.name, Recreation.trailName
+                    FROM Park, Recreation
+                    WHERE Park.iDNumber = Recreation.parkIDNumber
+                    AND Park.name = ?"""
+        args = [_park]
+        cur = _conn.cursor()
+        cur.execute(sql, args)
+
+        l = '{:>10} {:>10}'.format("Park", "Trail")
+        print(l)
+        print("-------------------------------")
+
+        rows = cur.fetchall()
+        for row in rows:
+            l = '{:>10} {:>10}'.format(row[0], row[1])
+            print(l)
+
+    except Error as e:
+        print(e)
+
+    print("++++++++++++++++++++++++++++++++++")
+
 
 # def pcsByMaker(_conn, _maker): 
 #     print("++++++++++++++++++++++++++++++++++")
@@ -811,6 +839,7 @@ def main():
         staffAtPrk(conn)
         permitFeeperPark(conn, "Yosemite", "backpacking")
         parkOprHrs(conn, "Great Smokey Mountains")
+        listTrails(conn, "Great Sand Dunes")
 
 
       #  pcsByMaker(conn, "E")
