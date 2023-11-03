@@ -224,14 +224,29 @@ FROM Park, Location
 WHERE Location.state = 'California'
 AND Location.parkIdNumber = Park.iDNumber;
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Number of employees per park
 SELECT DISTINCT s.parkIDNumber 'Park ID', COUNT(s.parkIDNumber) 'Number of Employees'
 FROM Staff s
 GROUP BY s.parkIDNUMBER;
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+View the Features of a Park
 SELECT featureName
 FROM Features, Park
 WHERE Features.parkIDNUMBER = Park.IdNumber
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Most expensive Acitivty from every Park
+SELECT Fees.permitType, Park.name, Fees.amount
+FROM Park, Fees
+WHERE Park.IdNumber = Fees.parkIDNumber
+
+INTERSECT 
+    
+SELECT Fees.permitType, Park.name, MAX(Fees.amount)
+FROM Park, Fees
+WHERE Fees.parkIDNumber = Park.iDNumber
+GROUP BY Park.iDNumber
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
 
 
 #Lab 7 Stuff

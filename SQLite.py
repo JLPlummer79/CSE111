@@ -470,13 +470,13 @@ def typesOfPark(_conn):
         
         cur = _conn.cursor()
         cur.execute(sql)
-        l = '{:>10} {:>10} {:>10}'.format("Name", "Designation", "Address")
+        l = '{:>10} {:>10} {:>10} {:>10} {:>10}'.format("Name", "Designation", "Address", "City", "Zip Code")
         print(l)
         print("-------------------------------")
 
         rows = cur.fetchall()
         for row in rows:
-            l = '{:>10} {:>10} {:>10}'.format(row[0], row[1], row[2])
+            l = '{:>10} {:>10} {:>10} {:>10} {:>10}'.format(row[0], row[1], row[2], row[3], row[4])
             print(l)        
 
     except Error as e:
@@ -534,6 +534,40 @@ def featureByPark(_conn, _park):
         rows = cur.fetchall()
         for row in rows:
             l = '{:>10} {:>10}'.format(row[0], row[1])
+            print(l)
+
+    except Error as e:
+        print(e)
+
+    print("++++++++++++++++++++++++++++++++++")
+
+def expsActivities(_conn):
+    print("++++++++++++++++++++++++++++++++++")
+
+    print("Most expensive Acitivty from every Park.")
+
+    try:
+        sql = """SELECT Fees.permitType, Park.name, Fees.amount
+                    FROM Park, Fees
+                    WHERE Park.IdNumber = Fees.parkIDNumber
+
+                    INTERSECT 
+                        
+                    SELECT Fees.permitType, Park.name, MAX(Fees.amount)
+                    FROM Park, Fees
+                    WHERE Fees.parkIDNumber = Park.iDNumber
+                    GROUP BY Park.iDNumber"""
+
+        cur = _conn.cursor()
+        cur.execute(sql)
+
+        l = '{:>10} {:>10} {:>10}'.format("Permit", "Park", "Fee")
+        print(l)
+        print("-------------------------------")
+
+        rows = cur.fetchall()
+        for row in rows:
+            l = '{:>10} {:>10} {:>10}'.format(row[0], row[1], row[2])
             print(l)
 
     except Error as e:
@@ -655,6 +689,7 @@ def main():
         typesOfPark(conn)
         countStaff(conn)
         featureByPark(conn, "Yellowstone")
+        expsActivities(conn)
 
       #  pcsByMaker(conn, "E")
       #  productByMaker(conn, "Laptop", "E")
