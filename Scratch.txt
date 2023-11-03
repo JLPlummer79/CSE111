@@ -224,7 +224,10 @@ FROM Park, Location
 WHERE Location.state = 'California'
 AND Location.parkIdNumber = Park.iDNumber;
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
+SELECT DISTINCT s.parkIDNumber 'Park ID', COUNT(s.parkIDNumber) 'Number of Employees'
+FROM Staff s
+GROUP BY s.parkIDNUMBER;
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 #Lab 7 Stuff
 statement = 'create table warehouse (w_warehousekey decimal(9,0) w_name char(100),...)'
 statement = r"select row_number(), ...\

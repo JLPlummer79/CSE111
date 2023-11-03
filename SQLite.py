@@ -486,6 +486,31 @@ def typesOfPark(_conn):
 
     print("++++++++++++++++++++++++++++++++++")
 
+def countStaff(_conn):
+    print("++++++++++++++++++++++++++++++++++")
+
+    print("Print number of staff at each park.")
+
+    try:
+        sql = """SELECT DISTINCT Park.name, COUNT(s.employeeIDNumber) 
+                        FROM Staff s, Park
+                        WHERE Park.IDNumber = s.parkIDNumber
+                        GROUP BY s.parkIDNUMBER"""
+        cur = _conn.cursor()
+        cur.execute(sql)
+        l = '{:>10} {:>10}'.format("Park Name", "Staffing Count")
+        print(l)
+        print("-------------------------------")
+
+        rows = cur.fetchall()
+        for row in rows:
+            l = '{:>10} {:>10}'.format(row[0], row[1])
+            print(l)
+
+    except Error as e:
+        print(e)
+
+    print("++++++++++++++++++++++++++++++++++")
 
 
 
@@ -601,6 +626,7 @@ def main():
         parksHvBearsCamping(conn)
         actInShenandoah(conn)
         typesOfPark(conn)
+        countStaff(conn)
 
       #  pcsByMaker(conn, "E")
       #  productByMaker(conn, "Laptop", "E")
