@@ -246,7 +246,11 @@ FROM Park, Fees
 WHERE Fees.parkIDNumber = Park.iDNumber
 GROUP BY Park.iDNumber
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
+Print Permit information for a given start date (in this case the month of Nov)
+SELECT Park.name, Permits.ownerName, Permits.type
+FROM Park, Permits
+WHERE Park.iDNumber = Permits.parkIDNumber
+AND Permits.startDate LIKE '%%%%-11-%%'
 
 
 #Lab 7 Stuff

@@ -575,7 +575,39 @@ def expsActivities(_conn):
 
     print("++++++++++++++++++++++++++++++++++")
 
-# def pcsByMaker(_conn, _maker):
+def prkPermitbyStMonth(_conn, _sdate):
+     print("++++++++++++++++++++++++++++++++++")
+     
+     print("Park, permit owner starting on ", _sdate)
+     
+     try:
+         sql = """SELECT Park.name, Permits.ownerName, Permits.type
+                    FROM Park, Permits
+                    WHERE Park.iDNumber = Permits.parkIDNumber
+                    AND Permits.startDate LIKE ?"""
+         
+         args = [_sdate]
+         
+         cur = _conn.cursor()
+         cur.execute(sql, args)
+
+         l = '{:>10} {:>10} {:>10}'.format("Park", "Permit Holder", "Permit Type")
+         print(l)
+         print("-------------------------------")
+
+         rows = cur.fetchall()
+         for row in rows:
+            l = '{:>10} {:>10} {:>10}'.format(row[0], row[1], row[2])
+            print(l)
+
+
+     except Error as e:  
+        print(e)
+
+     print("++++++++++++++++++++++++++++++++++")
+
+
+# def pcsByMaker(_conn, _maker): 
 #     print("++++++++++++++++++++++++++++++++++")
 #     print("PCs by maker: ", _maker)
 
@@ -690,6 +722,7 @@ def main():
         countStaff(conn)
         featureByPark(conn, "Yellowstone")
         expsActivities(conn)
+        prkPermitbyStMonth(conn, "2023-11-1")
 
       #  pcsByMaker(conn, "E")
       #  productByMaker(conn, "Laptop", "E")
