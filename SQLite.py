@@ -663,6 +663,35 @@ def permitFeeperPark(_conn, _park, _act):
 
     print("++++++++++++++++++++++++++++++++++")
 
+def parkOprHrs(_conn, _park):
+    print("++++++++++++++++++++++++++++++++++")
+
+    print(_park, " hours: ")
+
+    try:
+        sql = """SELECT Park.hours, Park.name
+                    FROM Park
+                    WHERE Park.name = ?"""
+        
+        args = [_park]
+        cur = _conn.cursor()
+        cur.execute(sql, args)
+
+        l = '{:>10} {:>10}'.format("Hours", "Park")
+        print(l)
+        print("-------------------------------")
+
+        rows = cur.fetchall()
+        for row in rows:
+            l = '{:>10} {:>10}'.format(row[0], row[1])
+            print(l)
+
+    except Error as e:
+        print(e)
+
+    print("++++++++++++++++++++++++++++++++++")
+
+
 # def pcsByMaker(_conn, _maker): 
 #     print("++++++++++++++++++++++++++++++++++")
 #     print("PCs by maker: ", _maker)
@@ -778,9 +807,10 @@ def main():
         countStaff(conn)
         featureByPark(conn, "Yellowstone")
         expsActivities(conn)
-        prkPermitbyStMonth(conn, "2023-11-1")
+        prkPermitbyStMonth(conn, "2023-11-1")       #should change function name to make more sense
         staffAtPrk(conn)
         permitFeeperPark(conn, "Yosemite", "backpacking")
+        parkOprHrs(conn, "Great Smokey Mountains")
 
 
       #  pcsByMaker(conn, "E")

@@ -264,7 +264,10 @@ WHERE Park.iDNumber = Fees.parkIDNumber
 AND Fees.permitType = 'camping'             Note: want to be user supplied in python file
 AND Park.name = 'Great Sand Dunes'          Note: also user supplied
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
+Print Park Operating Hours (user supplied park name)
+SELECT Park.hours, Park.name
+FROM Park
+WHERE Park.name = "Yosemite"                Note: this will be user supplied
 #Lab 7 Stuff
 statement = 'create table warehouse (w_warehousekey decimal(9,0) w_name char(100),...)'
 statement = r"select row_number(), ...\
