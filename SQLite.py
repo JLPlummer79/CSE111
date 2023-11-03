@@ -606,6 +606,31 @@ def prkPermitbyStMonth(_conn, _sdate):
 
      print("++++++++++++++++++++++++++++++++++")
 
+def staffAtPrk(_conn):
+    print("++++++++++++++++++++++++++++++++++")
+    
+    print("Staff at each park.")
+
+    try:
+        sql= """SELECT Park.name, Staff.name
+                    FROM Park, Staff
+                    WHERE Park.iDNumber = Staff.parkIDNumber"""
+        
+        cur = _conn.cursor()
+        cur.execute(sql)
+        l = '{:>10} {:>10}'.format("Park", "Employee")
+        print(l)
+        print("-------------------------------")
+
+        rows = cur.fetchall()
+        for row in rows:
+            l = '{:>10} {:>10}'.format(row[0], row[1])
+            print(l)
+
+    except Error as e:
+        print(e)
+
+    print("++++++++++++++++++++++++++++++++++")
 
 # def pcsByMaker(_conn, _maker): 
 #     print("++++++++++++++++++++++++++++++++++")
@@ -723,6 +748,7 @@ def main():
         featureByPark(conn, "Yellowstone")
         expsActivities(conn)
         prkPermitbyStMonth(conn, "2023-11-1")
+        staffAtPrk(conn)
 
       #  pcsByMaker(conn, "E")
       #  productByMaker(conn, "Laptop", "E")

@@ -250,8 +250,12 @@ Print Permit information for a given start date (in this case the month of Nov)
 SELECT Park.name, Permits.ownerName, Permits.type
 FROM Park, Permits
 WHERE Park.iDNumber = Permits.parkIDNumber
-AND Permits.startDate LIKE '%%%%-11-%%'
-
+AND Permits.startDate LIKE '2023-11-01' Note: user supplies start date
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Print All Staff at each Park
+SELECT Park.name, Staff.name
+FROM Park, Staff
+WHERE Park.iDNumber = Staff.parkIDNumber
 
 #Lab 7 Stuff
 statement = 'create table warehouse (w_warehousekey decimal(9,0) w_name char(100),...)'
