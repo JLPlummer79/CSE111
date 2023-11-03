@@ -512,7 +512,34 @@ def countStaff(_conn):
 
     print("++++++++++++++++++++++++++++++++++")
 
+def featureByPark(_conn, _park):
+    print("++++++++++++++++++++++++++++++++++")
 
+    print("Features in: ", _park, " park.")
+
+    try:
+        sql = """SELECT Park.name, Features.featureName
+                    FROM Features, Park
+                    WHERE Features.parkIDNUMBER = Park.IdNumber
+                    AND Park.name = ?"""
+        args = [_park]
+
+        cur = _conn.cursor()
+        cur.execute(sql, args)
+
+        l = '{:>10} {:>10}'.format("Park", "Features")
+        print(l)
+        print("-------------------------------")
+
+        rows = cur.fetchall()
+        for row in rows:
+            l = '{:>10} {:>10}'.format(row[0], row[1])
+            print(l)
+
+    except Error as e:
+        print(e)
+
+    print("++++++++++++++++++++++++++++++++++")
 
 # def pcsByMaker(_conn, _maker):
 #     print("++++++++++++++++++++++++++++++++++")
@@ -627,6 +654,7 @@ def main():
         actInShenandoah(conn)
         typesOfPark(conn)
         countStaff(conn)
+        featureByPark(conn, "Yellowstone")
 
       #  pcsByMaker(conn, "E")
       #  productByMaker(conn, "Laptop", "E")

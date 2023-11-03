@@ -228,6 +228,12 @@ SELECT DISTINCT s.parkIDNumber 'Park ID', COUNT(s.parkIDNumber) 'Number of Emplo
 FROM Staff s
 GROUP BY s.parkIDNUMBER;
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+SELECT featureName
+FROM Features, Park
+WHERE Features.parkIDNUMBER = Park.IdNumber
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
 #Lab 7 Stuff
 statement = 'create table warehouse (w_warehousekey decimal(9,0) w_name char(100),...)'
 statement = r"select row_number(), ...\
