@@ -256,6 +256,14 @@ Print All Staff at each Park
 SELECT Park.name, Staff.name
 FROM Park, Staff
 WHERE Park.iDNumber = Staff.parkIDNumber
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Print Fee for (user supplied activity) at user supplied park
+SELECT Fees.amount, Fees.permitType, Park.name
+FROM Park, Fees
+WHERE Park.iDNumber = Fees.parkIDNumber
+AND Fees.permitType = 'camping'             Note: want to be user supplied in python file
+AND Park.name = 'Great Sand Dunes'          Note: also user supplied
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 #Lab 7 Stuff
 statement = 'create table warehouse (w_warehousekey decimal(9,0) w_name char(100),...)'

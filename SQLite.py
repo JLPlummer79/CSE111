@@ -632,6 +632,37 @@ def staffAtPrk(_conn):
 
     print("++++++++++++++++++++++++++++++++++")
 
+def permitFeeperPark(_conn, _park, _act):
+    print("++++++++++++++++++++++++++++++++++")
+
+    print("Fee amount for ", _act, " at ", _park)
+
+    try:
+        sql = """SELECT Fees.amount, Fees.permitType, Park.name
+                    FROM Park, Fees
+                    WHERE Park.iDNumber = Fees.parkIDNumber
+                    AND Fees.permitType = ?
+                    AND Park.name = ? """
+        
+        args = [_act, _park]
+
+        cur = _conn.cursor()
+        cur.execute(sql, args)
+
+        l = '{:>10} {:>10} {:>10}'.format("Fee", "Permit Type", "Park")
+        print(l)
+        print("-------------------------------")
+
+        rows = cur.fetchall()
+        for row in rows:
+            l = '{:>10} {:>10} {:>10}'.format(row[0], row[1], row[2])
+            print(l)
+
+    except Error as e:
+        print(e)
+
+    print("++++++++++++++++++++++++++++++++++")
+
 # def pcsByMaker(_conn, _maker): 
 #     print("++++++++++++++++++++++++++++++++++")
 #     print("PCs by maker: ", _maker)
@@ -749,6 +780,8 @@ def main():
         expsActivities(conn)
         prkPermitbyStMonth(conn, "2023-11-1")
         staffAtPrk(conn)
+        permitFeeperPark(conn, "Yosemite", "backpacking")
+
 
       #  pcsByMaker(conn, "E")
       #  productByMaker(conn, "Laptop", "E")
