@@ -291,6 +291,17 @@ SELECT F.fauna, F.flora, F.featureName, L.state
 FROM Features F, Location L
 WHERE F.parkIdNumber = L.parkIdNumber
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Total Fees by Park
+
+SELECT Sum(F.amount), Park.name
+FROM Fees F, Park
+WHERE F.permitType = (   
+        SELECT P.type
+        FROM Park, Permits P
+        WHERE Park.IdNumber = P.parkIdNumber)
+AND Park.iDNumber = F.parkIdNumber
+GROUP BY F.parkIdNumber
+
 
 
 

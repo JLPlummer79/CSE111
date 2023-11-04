@@ -799,6 +799,34 @@ def featuresByState(_conn):
 
     print("++++++++++++++++++++++++++++++++++")
 
+def totalFeesbyPark(_conn):
+    print("++++++++++++++++++++++++++++++++++")
+
+    try:
+        sql = """SELECT Sum(F.amount), Park.name
+                    FROM Fees F, Park
+                    WHERE F.permitType = (   
+                        SELECT P.type
+                        FROM Park, Permits P
+                        WHERE Park.IdNumber = P.parkIdNumber)
+                    AND Park.iDNumber = F.parkIdNumber
+                    GROUP BY F.parkIdNumber"""
+        cur = _conn.cursor()
+        cur.execute(sql)
+
+        l = '{:>10} {:>10}'.format("Total Fees", "Park")
+        print(l)
+        print("-------------------------------")     
+
+        rows = cur.fetchall()
+        for row in rows:
+            l = '{:>10} {:>10}'.format(row[0], row[1])
+            print(l)
+
+    except Error as e:
+        print(e)
+
+    print("++++++++++++++++++++++++++++++++++")
 
 
 # def pcsByMaker(_conn, _maker): 
@@ -924,6 +952,7 @@ def main():
         totPermitsperPark(conn, "Yosemite")                 #14
         permitsbyPark(conn)                                #15
         featuresByState(conn)                              #16
+        totalFeesbyPark(conn)                              #17
 
 
       #  pcsByMaker(conn, "E")
