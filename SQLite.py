@@ -719,7 +719,34 @@ def listTrails(_conn, _park):
 
     print("++++++++++++++++++++++++++++++++++")
 
+def totPermitsperPark(_conn, _park):
+    print("++++++++++++++++++++++++++++++++++")
 
+    print("Max permit number and number of permits for ",_park)
+
+    try:
+        sql = """SELECT Park.totalNumPermits, Count(Permits.IdNumber), Park.name
+                    FROM Park, Permits
+                    WHERE Park.iDNumber = Permits.parkIDNumber
+                    AND Park.name = ?"""
+
+        args = [_park]
+        cur = _conn.cursor()
+        cur.execute(sql, args)
+
+        l = '{:>10} {:>10} {:>10}'.format("Total allowed Permits", "Number of Permits", "Park")
+        print(l)
+        print("-------------------------------")
+
+        rows = cur.fetchall()
+        for row in rows:
+            l = '{:>10} {:>10} {:>10}'.format(row[0], row[1], row[2])
+            print(l)
+
+    except Error as e:
+        print(e)
+
+    print("++++++++++++++++++++++++++++++++++")
 
 # def pcsByMaker(_conn, _maker): 
 #     print("++++++++++++++++++++++++++++++++++")
@@ -841,6 +868,7 @@ def main():
         permitFeeperPark(conn, "Yosemite", "backpacking")
         parkOprHrs(conn, "Great Smokey Mountains")
         listTrails(conn, "Great Sand Dunes")
+        totPermitsperPark(conn, "Yosemite")
 
 
       #  pcsByMaker(conn, "E")

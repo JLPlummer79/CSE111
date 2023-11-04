@@ -274,6 +274,13 @@ SELECT Park.name, Recreation.trailName
 FROM Park, Recreation
 WHERE Park.iDNumber = Recreation.parkIDNumber
 AND Park.name = 'Great Sand Dunes' Note: this will be user supplied
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Print number of permits and limit
+SELECT Park.totalNumPermits, Count(Permits.IdNumber)
+FROM Park, Permits
+WHERE Park.iDNumber = Permits.parkIDNumber
+AND Park.name = "Yellowstone" User supplied?
+
 
 #Lab 7 Stuff
 statement = 'create table warehouse (w_warehousekey decimal(9,0) w_name char(100),...)'
