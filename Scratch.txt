@@ -286,7 +286,11 @@ SELECT Park.name, Permits.type, Permits.ownerName
 FROM Permits, Park
 WHERE Park.iDNumber = Permits.parkIDNumber
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
+Print fauna, flora, and featureName by state 
+SELECT F.fauna, F.flora, F.featureName, L.state
+FROM Features F, Location L
+WHERE F.parkIdNumber = L.parkIdNumber
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
 

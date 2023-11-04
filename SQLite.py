@@ -774,6 +774,32 @@ def permitsbyPark(_conn):
 
     print("++++++++++++++++++++++++++++++++++")
 
+def featuresByState(_conn):
+    print("++++++++++++++++++++++++++++++++++")
+
+    try: 
+        sql = """SELECT L.state,F.fauna, F.flora, F.featureName
+                    FROM Features F, Location L
+                    WHERE F.parkIdNumber = L.parkIdNumber"""
+        
+        cur = _conn.cursor()
+        cur.execute(sql)
+        
+        l = '{:>10} {:>10} {:>10} {:>10}'.format("State", "Animals", "Plants", "Features")
+        print(l)
+        print("-------------------------------")
+
+        rows = cur.fetchall()
+        for row in rows:
+            l = '{:>10} {:>10} {:>10} {:>10}'.format(row[0], row[1], row[2], row[3])
+            print(l)
+    
+    except Error as e:
+        print(e)
+
+    print("++++++++++++++++++++++++++++++++++")
+
+
 
 # def pcsByMaker(_conn, _maker): 
 #     print("++++++++++++++++++++++++++++++++++")
@@ -896,7 +922,8 @@ def main():
         parkOprHrs(conn, "Great Smokey Mountains")          #12
         listTrails(conn, "Great Sand Dunes")                #13
         totPermitsperPark(conn, "Yosemite")                 #14
-        permitsbyPark(_conn)                                #15
+        permitsbyPark(conn)                                #15
+        featuresByState(conn)                              #16
 
 
       #  pcsByMaker(conn, "E")
