@@ -748,6 +748,33 @@ def totPermitsperPark(_conn, _park):
 
     print("++++++++++++++++++++++++++++++++++")
 
+def permitsbyPark(_conn):
+    print("++++++++++++++++++++++++++++++++++")
+
+    print("All permits in each park")
+
+    try:
+        sql = """SELECT Park.name, Permits.type, Permits.ownerName
+                    FROM Permits, Park
+                    WHERE Park.iDNumber = Permits.parkIDNumber"""
+        cur = _conn.cursor()
+        cur.execute(sql)
+
+        l = '{:>10} {:>10} {:>10}'.format("Park", "Permit type", "Permit Owner")
+        print(l)
+        print("-------------------------------")
+
+        rows = cur.fetchall()
+        for row in rows:
+            l = '{:>10} {:>10} {:>10}'.format(row[0], row[1], row[2])
+            print(l)
+
+    except Error as e:
+        print(e)
+
+    print("++++++++++++++++++++++++++++++++++")
+
+
 # def pcsByMaker(_conn, _maker): 
 #     print("++++++++++++++++++++++++++++++++++")
 #     print("PCs by maker: ", _maker)
@@ -855,20 +882,21 @@ def main():
         #dropTables(conn)
         #createTables(conn)
         #populateTables(conn)
-        parksAllowSwimming(conn)
-        cmpPermitsFees(conn)
-        parksHvBearsCamping(conn)
-        actInShenandoah(conn)
-        typesOfPark(conn)
-        countStaff(conn)
-        featureByPark(conn, "Yellowstone")
-        expsActivities(conn)
-        prkPermitbyStMonth(conn, "2023-11-1")       #should change function name to make more sense
-        staffAtPrk(conn)
-        permitFeeperPark(conn, "Yosemite", "backpacking")
-        parkOprHrs(conn, "Great Smokey Mountains")
-        listTrails(conn, "Great Sand Dunes")
-        totPermitsperPark(conn, "Yosemite")
+        parksAllowSwimming(conn)            #1
+        cmpPermitsFees(conn)                #2
+        parksHvBearsCamping(conn)           #3
+        actInShenandoah(conn)               #4
+        typesOfPark(conn)                   #5
+        countStaff(conn)                    #6
+        featureByPark(conn, "Yellowstone")  #7
+        expsActivities(conn)                #8
+        prkPermitbyStMonth(conn, "2023-11-1") #9      #should change function name to make more sense
+        staffAtPrk(conn)                    #10
+        permitFeeperPark(conn, "Yosemite", "backpacking")   #11
+        parkOprHrs(conn, "Great Smokey Mountains")          #12
+        listTrails(conn, "Great Sand Dunes")                #13
+        totPermitsperPark(conn, "Yosemite")                 #14
+        permitsbyPark(_conn)                                #15
 
 
       #  pcsByMaker(conn, "E")

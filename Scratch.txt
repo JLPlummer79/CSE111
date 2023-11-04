@@ -279,7 +279,15 @@ Print number of permits and limit
 SELECT Park.totalNumPermits, Count(Permits.IdNumber)
 FROM Park, Permits
 WHERE Park.iDNumber = Permits.parkIDNumber
-AND Park.name = "Yellowstone" User supplied?
+AND Park.name = "Yellowstone" User supplied.
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Print permits at each park
+SELECT Park.name, Permits.type, Permits.ownerName
+FROM Permits, Park
+WHERE Park.iDNumber = Permits.parkIDNumber
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
 
 
 #Lab 7 Stuff
