@@ -276,84 +276,204 @@ def populateTable_Fees(_conn):
     print("success")
     print("++++++++++++++++++++++++++++++++++")
 
+def insert_Features(_conn, _parkId, _featureName, _structures, _flora, _fauna):
+    print("++++++++++++++++++++++++++++++++++")
+    print("Insert Features")
 
-# def insert_Laptop(_conn, _model, _speed, _ram, _hd, _screen, _price):
-#     print("++++++++++++++++++++++++++++++++++")
-#     print("Insert Laptop")
+    try:
+           sql = """INSERT INTO Features(parkIdNumber, featureName, structures, flora, fauna)
+               VALUES(?, ?, ?, ?, ?)"""
+           args = [_parkId, _featureName, _structures, _flora, _fauna]
+           _conn.execute(sql, args)
+           _conn.commit()
+           print("successs")
+    except Error as e:
+           _conn.rollback()
+           print(e)
+    print("++++++++++++++++++++++++++++++++++")
 
-#     try:
-#         sql = "INSERT INTO Laptop VALUES(?, ?, ?, ?, ?, ?)"
-#         args = [_model, _speed, _ram, _hd, _screen, _price]
-#         _conn.execute(sql, args)
+def populateTable_Features (_conn):
+    print("++++++++++++++++++++++++++++++++++")
+    print("Populate Features")
+    insert_Features(1, 'Old Faithful-Grand Prismatic-Yellowstone Falls-Mudpots', 'visitor centers-hotels-bathrooms-gift shops', 'Lodgepole Pine', 'Bison-Elk-Grizzley Bear-Wolf')
+    insert_Features(2, 'Half Dome-Vernal Falls-Upper+Lower Yosemite Falls-Vernal Falls', 'visitor centers-hotels-bathrooms-gift shops', 'Lodgepole Pine', 'Brown Bear-Raccoon-Deer-Chipmunk')
+    insert_Features(3, 'Delicate Arch-Windows-Great Wall-Courthouse', 'visitor center-bathrooms-gift shop', 'Chaparael', 'Coyote-Alligator Lizard')
+    insert_Features(4, 'Cadillac Mountain-Jordan Pond-Somes Sound', 'visitor center-bathrooms-gift shop-lighthouse', 'Oak-Birch-Choke Cherry', 'Squirell-Deer-Raccoon')
+    insert_Features(5, 'Colorado River-South Rim-North Rim', 'visitor centers-bathrooms-gift shops', 'Engleman Spruce-Douglas Fir-Aspen-Mountain Ash', 'Bighornn Sheep-Wild Burros-Coyote-Salamander-Trout-Walleye-Catfish')
+    insert_Features(6, 'Kelso Dunes-Clark Mountains-lava flows-lava domes', 'visitor center-bathrooms-gift shops-train station', 'Joshua Tree-Cresote bush-Pinion Juniper-Yucca', 'Tortise-Badger-Coyote')
+    insert_Features(7, 'Devils Postpile-Rainbow Falls', 'visitor center-bathrooms-gift shop', 'Lodgepole Pine-White Fir-Red Fir-Willows-Black Cottonwood', 'Black Bear-Pine Marten-Mule Deer')
+    insert_Features(8, 'San Andreas Fault-Pacific Ocean-Sand Dunes-Wetlands-Marshes', 'visitor center-bathrooms-gift shop-light house', 'Sky Lupine-California Poppies-Bull Kelp', 'Harbor Seal-Bobcat-Coyote-Elephant Seal-Elk-Califonia Grey Whale')
+    insert_Features(9, 'prarie-grassland-ephemeral marshes-ponds', 'visitor center-bathrooms-gift shop', 'Giant Bristle Grass-Sargassum Weed-Roughseed Sea Purslane', 'Ghost Crab-Sheepshead-Redfish-Flounder-Black Drum-Coyote-Deer-Leatherback Sea Turtle-Green Sea Turtle-Kemps Ridley Sea Turtle-Loggerhead Sea Turtle-Hawksbill Sea Turtle')
+    insert_Features(10, 'San Diego Harbor-North Island-', 'lighthouse-visitor center-bathrooms-gift shop', 'snake cholla-prickly pear cactus-Mojave yucca-Shaws agave-California coast poppy-Indian paintbrush-California buckwheat-California sagebrush-lemonadeberry', 'Grey Whale-Trapdoor Spider-Great Blue Heron-California Quail-Canyon Bat')
+    insert_Features(11, 'mixed grass prarie-sandstones-siltstones-mudstones-claystones-limestones-volcanic ash', 'visitorcenters-bathroom-overlooks', 'Western Wheatgrass-juniper', 'Bison-Pronghorn-Prarie Dog-Rattlesnake')
+    insert_Features(12, 'Continental Divide-Glaciers-Mount Ida-McHenrys Peak', 'visitorcenters-bathrooms-boat launch', 'Lichen-Liverwort-Moss-Aspen-Columbine', 'Moose-Bighorn Sheep-Elk-Black Bear-Coyote-Mule Deer-Cougar')
+    insert_Features(13, 'Temperate Rainforest-Hoh River-Hall of Mosses Trail-Elwah River-Glaciers-Rialto Beach', 'visitorcenters-bathrooms-boat launch-overlooks', 'Big Leaf Maples-Sitka Spruce-Western Hemlock', 'Mountain Goat-Cougar-Bald Eagle-Black Bear-Elk-Harbor Seal')
+    insert_Features(14, 'Star Dune-Mendano Creek-Sangre De Christo Mountains-High Dune', 'visitorcenter-bathrooms', 'Ponderosa Pine-Pinion Juniper-Cottonwood-Aspen-Red Osier Dogwood-Bristlecone Pine-Limber Pine', 'Pika-Ptarmigan-Marmot-Bighorn Sheep-Cougar-Mule Deer-Owl-Dusky Grouse-Turkey-Elk-Pronghorn')
+    insert_Features(15, 'Appalacian Trail-Clingmans Dome-Newfound Gap-Cades Cove-Chimney Tops-Andrews Bald', 'visitorcenter-bathrooms', 'Dogwood-Azalea-Sweet Birch-Eastern White Pine-Eastern Red Bud', 'Black Bear-Spotfin Chub-salamanders-River Otter-Elk-Peregrine Falcon-Northern Flying Squirrel')
 
-#         _conn.commit()
-#         print("success")
-#     except Error as e:
-#         _conn.rollback()
-#         print(e)
+    print("success")
+    print("++++++++++++++++++++++++++++++++++")
 
-#     print("++++++++++++++++++++++++++++++++++")
+def insert_Location(_conn, _parkID, _state, _address, _county, _city, _zipcode):
+    print("++++++++++++++++++++++++++++++++++")
+    print("Insert Location")
 
+    try:
+           sql = """INSERT INTO Location(parkIDNumber, state, address, county, city, zipcode)
+               VALUES(?, ?, ?, ?, ?, ?)"""
+           args = [_conn, _parkID, _state, _address, _county, _city, _zipcode]
+           _conn.execute(sql, args)
+           _conn.commit()
+           print("successs")
+    except Error as e:
+           _conn.rollback()
+           print(e)
+    print("++++++++++++++++++++++++++++++++++")
 
-# def populateTable_Laptop(_conn):
-#     print("++++++++++++++++++++++++++++++++++")
-#     print("Populate Laptop")
+def populateTable_Location (_conn):
+    print("++++++++++++++++++++++++++++++++++")
+    print("Populate Location")
+    insert_Location(21, 'Maryland-Virginia', '7206 Naional Seashore Ln-8586 Beach Rd', 'Worcester-Accomack', 'Berlin-Chincoteague', 21811)
+    insert_Location(20, 'Massachusetts', '50 Nauset Rd', 'Barnstable', 'Eastham', 02642)
+    insert_Location(19, 'Utah', 'Forbidding Canyon Lake', 'San Juan', 'Powell', 84533)
+    insert_Location(18, 'Oregon', '32651 Highway 19', 'Wheeler-Grant', 'Kimberly', 97848)
+    insert_Location(17, 'New York', 'Liberty Island', 'New York', 'New York', 10004)
+    insert_Location(16, 'Virginia', '21073 Skyline Dr', 'Warren', 'Front Royal', 22630)
+    insert_Location(15, 'Tennessee', '107 Park Headquarters Rd', 'Sevier', 'Gatlinburg', 37738)
+    insert_Location(14, 'Colorado', 'Visitor Center 11999 State Highway 150', 'Saguache-Alamosa', 'Mosca', 81146)
+    insert_Location(13, 'Washington', '3002 Mt Angeles Rd', 'Jefferson', 'Port Angeles', 98362)
+    insert_Location(12, 'Colorado', '1000 US Hwy 36', 'Larimer', 'Estes Park', 80517)
+    insert_Location(11, 'South Dakota', '25216 Ben Reifel Rd', 'Oglala Lakota', 'Interior', 57750)
+    insert_Location(10, 'California', '1800 Cabrillo Memorial Dr', 'San Diego', 'San Diego', 92106)
+    insert_Location(9, 'Texas', '20420 Park Rd 22', 'Kleberg', 'Corpus Christi', 92106)
+    insert_Location(8, 'California', '1 Bear Valley Rd', 'Marin', 'Point Reyes Station', 94956)
+    insert_Location(7, 'California', 'Devils Postpile Rd', 'Madera', 'Mammoth Lakes', 93546)
+    insert_Location(6, 'California', '90942 Kelso Cima Rd', 'San Bernardino', 'Essex', 92332)
+    insert_Location(5, 'Arizona', '20 South Entrance Rd', 'Mohave', 'Grand Canyon', 86023)
+    insert_Location(4, 'Maine', '25 Visitor Center Rd', 'Hancock-Knox', 'Bar Harbor', 04609)
+    insert_Location(3, 'Utah', 'Arches National Park Rd', 'Grand', 'Moab', 84532)
+    insert_Location(1, 'Montana-Wyoming', 'North Entrance Rd-2 Officers Row', 'Teton-Gallatin', 'Gardiner-Cody', 59030-82190)
+    
+    print("success")
+    print("++++++++++++++++++++++++++++++++++")
 
-#     insert_Laptop(_conn, 2001, 2.00, 2048, 240, 20.1, 3673)
-#     insert_Laptop(_conn, 2002, 1.73, 1024, 80, 17.0, 949)
-#     insert_Laptop(_conn, 2003, 1.80, 512, 60, 15.4, 549)
-#     insert_Laptop(_conn, 2004, 2.00, 512, 60, 13.3, 1150)
-#     insert_Laptop(_conn, 2005, 2.16, 1024, 120, 17.0, 2500)
-#     insert_Laptop(_conn, 2006, 2.00, 2048, 80, 15.4, 1700)
-#     insert_Laptop(_conn, 2007, 1.83, 1024, 120, 13.3, 1429)
-#     insert_Laptop(_conn, 2008, 1.60, 1024, 100, 15.4, 900)
-#     insert_Laptop(_conn, 2009, 1.60, 512, 80, 14.1, 680)
-#     insert_Laptop(_conn, 2010, 2.00, 2048, 160, 15.4, 2300)
+def insert_Permit(_conn, _parkId, _idNumber, _ownerName, _type, _duration, _startDate, _endDate):
+    print("++++++++++++++++++++++++++++++++++")
+    print("Insert Permit")
 
-#     print("success")
-#     print("++++++++++++++++++++++++++++++++++")
+    try:
+           sql = """INSERT INTO Permits(parkIdNumber, IdNumber, ownerName, type, duration, startDate, end-date)
+               VALUES(?, ?, ?, ?, ?, ?, ?)"""
+           args = [_parkId, _idNumber, _ownerName, _type, _duration, _startDate, _endDate]
+           _conn.execute(sql, args)
+           _conn.commit()
+           print("successs")
+    except Error as e:
+           _conn.rollback()
+           print(e)
+    print("++++++++++++++++++++++++++++++++++")
 
+def populateTable_Permits (_conn):
+    print("++++++++++++++++++++++++++++++++++")
+    print("Populate Permits")
+    insert_Permit(2, 1, 'Royal Robbins', 'rockclimbing', 30, '2023-07-01', '2023-08-01')
+    insert_Permit(2, 2, 'John Long', 'rockclimbing', 30, '2023-07-01', '2023-08-01')
+    insert_Permit(2, 3, 'John Bachar', 'rockclimbing', 30, '2023-07-01', '2023-08-01')
+    insert_Permit(2, 4, 'Warren Harding', 'rockclimbing', 30, '2023-07-01', '2023-08-01')
+    insert_Permit(11, 1, 'Mike Piazza', 'camping', 3, '2024-05-01', '2024-05-04')
+    insert_Permit(14, 1, 'Thomas Redbook', 'hiking', 1, '2023-10-31', '2023-10-31')
+    insert_Permit(2, 5, 'Scrooge McDuck', 'camping', 2, '2023-12-30', '2023-12-31')
+    insert_Permit(2, 6, 'Baloo', 'camping', 3, '2023-11-17', '2023-11-20')
+    insert_Permit(2, 7, 'Chip', 'camping', 4, '2023-11-1', '2023-11-5')
+    insert_Permit(5, 5, 'Jim Peterson', 'backpacking', 6, '2023-11-1', '2023-11-5')
+    insert_Permit(12, 1, 'Thomas Finley', 'backpacking', 3, '2023-09-12', '2023-09-15')
+    insert_Permit(14, 1, 'Agustine Burnhard', 'backpacking', 12, '2023-10-11', '2023-10-23')
+    insert_Permit(16, 1, 'Jim Lee', 'backpacking', 5, '2023-07-11', '2023-07-16')
+    insert_Permit(1, 1, 'Albert Einstein', 'backpacking', 13, '2023-07-01', '2023-07-14')
+    insert_Permit(1, 2, 'Henry Ford', 'camping', 4, '2023-08-04', '2023-08-4')
 
-# def insert_Printer(_conn, _model, _color, _type, _price):
-#     print("++++++++++++++++++++++++++++++++++")
-#     print("Insert Printer")
+    print("success")
+    print("++++++++++++++++++++++++++++++++++")
 
-#     try:
-#         sql = """INSERT INTO Printer(model, color, type, price)
-#                 VALUES(?, ?, ?, ?)"""
-#         args = [_model, _color, _type, _price]
-#         _conn.execute(sql, args)
+def insert_Recreation(_conn, _parkID, _permitID, _activity, _trailName, _trailHead, _road, _campsiteName):
+    print("++++++++++++++++++++++++++++++++++")
+    print("Insert Recreation")
 
-#         _conn.commit()
-#         print("success")
-#     except Error as e:
-#         _conn.rollback()
-#         print(e)
+    try:
+           sql = """INSERT INTO Recreation(parkIDNumber, permitIDNumber, activity, trailName, trailHead, road, campsiteName)
+               VALUES(?, ?, ?, ?, ?, ?, ?)"""
+           args = [_parkID, _permitID, _activity, _trailName, _trailHead, _road, _campsiteName]
+           _conn.execute(sql, args)
+           _conn.commit()
+           print("successs")
+    except Error as e:
+           _conn.rollback()
+           print(e)
+    print("++++++++++++++++++++++++++++++++++")
 
-#     print("++++++++++++++++++++++++++++++++++")
+def populateTable_Recreation (_conn):
+    print("++++++++++++++++++++++++++++++++++")
+    print("Populate Recreation")
+    insert_Recreation(1, 1, 'backpacking', 'Dawson', 'Rose', ' ',' ')
+    insert_Recreation(2, 1, 'rockclimbing', '-', '-', '-','Camp 4')
+    insert_Recreation(2, 2, 'rockclimbing', '-', '-', '-','Camp 4')
+    insert_Recreation(2, 3, 'rockclimbing', '-', '-', '-','Camp 4')
+    insert_Recreation(2, 4, 'rockclimbing', '-', '-', '-','Camp 4')
+    insert_Recreation(14, 1, 'hiking', 'Dune Trail', 'Dune', 'Castle Creek','-')
+    insert_Recreation(11, 1, 'camping', '-', '-', 'Park Rd','Cochise')
 
+    
+    print("success")
+    print("++++++++++++++++++++++++++++++++++")
 
-# def populateTable_Printer(_conn):
-#     print("++++++++++++++++++++++++++++++++++")
-#     print("Populate Printer")
+def insert_Staff(_conn, _employeeId, _parkId, _department, _schedule, _name):
+    print("++++++++++++++++++++++++++++++++++")
+    print("Insert Staff")
 
-#     insert_Printer(_conn, 3001, True, "ink-jet", 99)
-#     insert_Printer(_conn, 3002, False, "laser", 239)
-#     insert_Printer(_conn, 3003, True, "laser", 899)
-#     insert_Printer(_conn, 3004, True, "ink-jet", 120)
-#     insert_Printer(_conn, 3005, False, "laser", 120)
-#     insert_Printer(_conn, 3006, True, "ink-jet", 100)
-#     insert_Printer(_conn, 3007, True, "laser", 200)
+    try:
+           sql = """INSERT INTO Staff(employeeIDNumber, parkIDNumber, department, schedule, name)
+               VALUES(?, ?, ?, ?, ?)"""
+           args = [_employeeId, _parkId, _department, _schedule, _name]
+           _conn.execute(sql, args)
+           _conn.commit()
+           print("successs")
+    except Error as e:
+           _conn.rollback()
+           print(e)
+    print("++++++++++++++++++++++++++++++++++")
 
-#     print("success")
-#     print("++++++++++++++++++++++++++++++++++")
+def populateTable_Staff (_conn):
+    print("++++++++++++++++++++++++++++++++++")
+    print("Populate Staff")
+    insert_Staff(1, 1, 'JANITORIAL', 'M__T_SS', 'Richard Sheryl')
+    insert_Staff(2, 3, 'RANGER', 'MTWT__S', 'Sherry Woods')
+    insert_Staff(3, 5, 'FIRE_DEPARTMENT', 'MT___SS', 'Michael Osborn')
+    insert_Staff(4, 7, 'FIRE_DEPARTMENT', 'MTWTFSS', 'Louie Von Hatter')
+    insert_Staff(5, 9, 'JANITORIAL', '__WTFS_', 'Richard Doberman')
+    insert_Staff(6, 10, 'VISITOR_CENTER', 'M__TFSS', 'Carlson Ford')
+    insert_Staff(7, 3, 'INTERNAL_AFFAIRS', 'MTW_FSS', 'Harrison Shepherd')
+    insert_Staff(8, 6, 'RANGER', 'MTWT__S', 'Alex Benjamin')
+    insert_Staff(9, 12, 'JANITORIAL', 'MT_TF_S', 'Cherry Groveson')
+    insert_Staff(10, 14, 'FIRE_DEPARTMENT', '___TF_S', 'Adam Sandson')
+    insert_Staff(11, 1, 'RANGER', 'M_WT__S', 'Leo Skywalker')
+    insert_Staff(12, 3, 'INTERNAL_AFFAIRS', 'M__T_SS', 'Timothy Stockson')
+    insert_Staff(13, 9, 'VISITOR_CENTER', '__WTFSS', 'Grover Berry')
+    insert_Staff(14, 21, 'RANGER', 'MT___SS', 'Adam Sandson')
+    insert_Staff(15, 18, 'JANITORIAL', 'M_WTFSS', 'Roger Cameron')
+    insert_Staff(16, 15, 'MANAGEMENT', 'MTW_F__', 'Rico Diesel')
+    insert_Staff(17, 17, 'MANAGEMENT', 'MT__FSS', 'Alexis Sheema')
+    insert_Staff(18, 17, 'JANITORIAL', 'MT_TFSS', 'Harry Porter')
 
+    print("success")
+    print("++++++++++++++++++++++++++++++++++")
 
-# def populateTables(_conn):
-#     #populateTable_Park(_conn)
-#     #populateTable_Fees(_conn)
-#     # populateTable_Laptop(_conn)
-#     # populateTable_Printer(_conn)
+def populateTables(_conn):
+    populateTable_Park(_conn)
+    populateTable_Fees(_conn)
+    populateTable_Recreation(_conn)
+    populateTable_Staff(_conn)
+    populateTable_Permits(_conn)
+    populateTable_Features(_conn)
 
 
 def parksAllowSwimming(_conn):
