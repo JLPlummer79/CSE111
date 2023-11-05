@@ -16,7 +16,7 @@ def insert_Features(_conn, _parkId, _featureName, _structures, _flora, _fauna):
 
 def populateTable_Features (_conn):
     print("++++++++++++++++++++++++++++++++++")
-    print("Populate Permits")
+    print("Populate Features")
     insert_Features(1, 'Old Faithful-Grand Prismatic-Yellowstone Falls-Mudpots', 'visitor centers-hotels-bathrooms-gift shops', 'Lodgepole Pine', 'Bison-Elk-Grizzley Bear-Wolf')
     insert_Features(2, 'Half Dome-Vernal Falls-Upper+Lower Yosemite Falls-Vernal Falls', 'visitor centers-hotels-bathrooms-gift shops', 'Lodgepole Pine', 'Brown Bear-Raccoon-Deer-Chipmunk')
     insert_Features(3, 'Delicate Arch-Windows-Great Wall-Courthouse', 'visitor center-bathrooms-gift shop', 'Chaparael', 'Coyote-Alligator Lizard')
