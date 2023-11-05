@@ -1,0 +1,37 @@
+def insert_Permit(_conn, _parkId, _idNumber, _ownerName, _type, _duration, _startDate, _endDate):
+    print("++++++++++++++++++++++++++++++++++")
+    print("Insert Permit")
+
+    try:
+           sql = """INSERT INTO Permits(parkIdNumber, IdNumber, ownerName, type, duration, startDate, end-date)
+               VALUES(?, ?, ?, ?, ?, ?, ?)"""
+           args = [_parkId, _idNumber, _ownerName, _type, _duration, _startDate, _endDate]
+           _conn.execute(sql, args)
+	   _conn.commit()
+           print("successs")
+    except Error as e:
+           _conn.rollback()
+           print(e)
+    print("++++++++++++++++++++++++++++++++++")
+
+def populateTable_Permits (_conn):
+    print("++++++++++++++++++++++++++++++++++")
+    print("Populate Permits")
+    insert_Permit(2, 1, 'Royal Robbins', 'rockclimbing', 30, '2023-07-01', '2023-08-01')
+    insert_Permit(2, 2, 'John Long', 'rockclimbing', 30, '2023-07-01', '2023-08-01')
+    insert_Permit(2, 3, 'John Bachar', 'rockclimbing', 30, '2023-07-01', '2023-08-01')
+    insert_Permit(2, 4, 'Warren Harding', 'rockclimbing', 30, '2023-07-01', '2023-08-01')
+    insert_Permit(11, 1, 'Mike Piazza', 'camping', 3, '2024-05-01', '2024-05-04')
+    insert_Permit(14, 1, 'Thomas Redbook', 'hiking', 1, '2023-10-31', '2023-10-31')
+    insert_Permit(2, 5, 'Scrooge McDuck', 'camping', 2, '2023-12-30', '2023-12-31')
+    insert_Permit(2, 6, 'Baloo', 'camping', 3, '2023-11-17', '2023-11-20')
+    insert_Permit(2, 7, 'Chip', 'camping', 4, '2023-11-1', '2023-11-5')
+    insert_Permit(5, 5, 'Jim Peterson', 'backpacking', 6, '2023-11-1', '2023-11-5')
+    insert_Permit(12, 1, 'Thomas Finley', 'backpacking', 3, '2023-09-12', '2023-09-15')
+    insert_Permit(14, 1, 'Agustine Burnhard', 'backpacking', 12, '2023-10-11', '2023-10-23')
+    insert_Permit(16, 1, 'Jim Lee', 'backpacking', 5, '2023-07-11', '2023-07-16')
+    insert_Permit(1, 1, 'Albert Einstein', 'backpacking', 13, '2023-07-01', '2023-07-14')
+    insert_Permit(1, 2, 'Henry Ford', 'camping', 4, '2023-08-04', '2023-08-4')
+
+    print("success")
+    print("++++++++++++++++++++++++++++++++++")
