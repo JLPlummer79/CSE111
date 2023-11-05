@@ -14,9 +14,9 @@ def insert_Staff(_conn, _employeeId, _parkId, _department, _schedule, _name):
            print(e)
     print("++++++++++++++++++++++++++++++++++")
 
-def populateTable_Permits (_conn):
+def populateTable_Staff (_conn):
     print("++++++++++++++++++++++++++++++++++")
-    print("Populate Permits")
+    print("Populate Staff")
     insert_Staff(1, 1, 'JANITORIAL', 'M__T_SS', 'Richard Sheryl')
     insert_Staff(2, 3, 'RANGER', 'MTWT__S', 'Sherry Woods')
     insert_Staff(3, 5, 'FIRE_DEPARTMENT', 'MT___SS', 'Michael Osborn')
