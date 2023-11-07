@@ -334,7 +334,7 @@ def populateTable_Location (_conn):
     print("++++++++++++++++++++++++++++++++++")
     print("Populate Location")
     insert_Location(21, 'Maryland-Virginia', '7206 Naional Seashore Ln-8586 Beach Rd', 'Worcester-Accomack', 'Berlin-Chincoteague', 21811)
-    insert_Location(20, 'Massachusetts', '50 Nauset Rd', 'Barnstable', 'Eastham', 02642)
+    insert_Location(20, 'Massachusetts', '50 Nauset Rd', 'Barnstable', 'Eastham', 2642)
     insert_Location(19, 'Utah', 'Forbidding Canyon Lake', 'San Juan', 'Powell', 84533)
     insert_Location(18, 'Oregon', '32651 Highway 19', 'Wheeler-Grant', 'Kimberly', 97848)
     insert_Location(17, 'New York', 'Liberty Island', 'New York', 'New York', 10004)
@@ -350,7 +350,7 @@ def populateTable_Location (_conn):
     insert_Location(7, 'California', 'Devils Postpile Rd', 'Madera', 'Mammoth Lakes', 93546)
     insert_Location(6, 'California', '90942 Kelso Cima Rd', 'San Bernardino', 'Essex', 92332)
     insert_Location(5, 'Arizona', '20 South Entrance Rd', 'Mohave', 'Grand Canyon', 86023)
-    insert_Location(4, 'Maine', '25 Visitor Center Rd', 'Hancock-Knox', 'Bar Harbor', 04609)
+    insert_Location(4, 'Maine', '25 Visitor Center Rd', 'Hancock-Knox', 'Bar Harbor', 4609)
     insert_Location(3, 'Utah', 'Arches National Park Rd', 'Grand', 'Moab', 84532)
     insert_Location(1, 'Montana-Wyoming', 'North Entrance Rd-2 Officers Row', 'Teton-Gallatin', 'Gardiner-Cody', 59030-82190)
     
@@ -925,7 +925,7 @@ def totalFeesbyPark(_conn):
     try:
         sql = """SELECT Sum(F.amount), Park.name
                     FROM Fees F, Park
-                    WHERE F.permitType = (   
+                    WHERE F.permitType IN (   
                         SELECT P.type
                         FROM Park, Permits P
                         WHERE Park.IdNumber = P.parkIdNumber)
