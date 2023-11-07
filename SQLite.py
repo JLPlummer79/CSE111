@@ -949,104 +949,6 @@ def totalFeesbyPark(_conn):
     print("++++++++++++++++++++++++++++++++++")
 
 
-# def pcsByMaker(_conn, _maker): 
-#     print("++++++++++++++++++++++++++++++++++")
-#     print("PCs by maker: ", _maker)
-
-#     try:
-#         sql = """select P.model as model, PC.price as price
-#                 from Product P, PC
-#                 where P.model = PC.model AND
-#                 maker = ?"""
-#         args = [_maker]
-
-#         cur = _conn.cursor()
-#         cur.execute(sql, args)
-
-#         l = '{:>10} {:>10}'.format("model", "price")
-#         print(l)
-#         print("-------------------------------")
-
-#         rows = cur.fetchall()
-#         for row in rows:
-#             l = '{:>10} {:>10}'.format(row[0], row[1])
-#             print(l)
-
-#     except Error as e:
-#         print(e)
-
-#     print("++++++++++++++++++++++++++++++++++")
-
-
-# def productByMaker(_conn, _pType, _maker):
-#     print("++++++++++++++++++++++++++++++++++")
-#     print(_pType, " by maker: ", _maker)
-
-#     try:
-#         sql = """select P.model as model,
-#             {}.price as price
-#             from Product P, {}
-#             where P.model = {}.model AND
-#             maker = ?""".format(_pType, _pType, _pType)
-#         args = [_maker]
-
-#         cur = _conn.cursor()
-#         cur.execute(sql, args)
-
-#         l = '{:>10} {:>10}'.format("model", "price")
-#         print(l)
-#         print("-------------------------------")
-
-#         rows = cur.fetchall()
-#         for row in rows:
-#             l = '{:>10} {:>10}'.format(row[0], row[1])
-#             print(l)
-
-#     except Error as e:
-#         print(e)
-
-#     print("++++++++++++++++++++++++++++++++++")
-
-
-# def allProductsByMaker(_conn, _maker):
-#     print("++++++++++++++++++++++++++++++++++")
-#     print("Products by maker: ", _maker)
-
-#     try:
-#         sql = """select P.model as model, P.type as type, PC.price as price
-#             from Product P, PC
-#             where P.model = PC.model AND
-#             maker = ?
-#             UNION
-#             select P.model as model, P.type as type, L.price as price
-#             from Product P, Laptop L
-#             where P.model = L.model AND
-#             maker = ?
-#             UNION
-#             select P.model as model, P.type as type, Pr.price as price
-#             from Product P, Printer Pr
-#             where P.model = Pr.model AND
-#             maker = ?"""
-#         args = [_maker, _maker, _maker]
-
-#         cur = _conn.cursor()
-#         cur.execute(sql, args)
-
-#         l = '{:>10} {:>20} {:>10}'.format("model", "type", "price")
-#         print(l)
-#         print("-------------------------------")
-
-#         rows = cur.fetchall()
-#         for row in rows:
-#             l = '{:>10} {:>20} {:>10}'.format(row[0], row[1], row[2])
-#             print(l)
-
-#     except Error as e:
-#         print(e)
-
-#     print("++++++++++++++++++++++++++++++++++")
-
-
 def main():
     database = r"project.db"
 
@@ -1074,10 +976,6 @@ def main():
         featuresByState(conn)                              #16
         totalFeesbyPark(conn)                              #17
 
-
-      #  pcsByMaker(conn, "E")
-      #  productByMaker(conn, "Laptop", "E")
-      #  allProductsByMaker(conn, "E")
 
         closeConnection(conn, database)
 
