@@ -948,36 +948,64 @@ def totalFeesbyPark(_conn):
 
     print("++++++++++++++++++++++++++++++++++")
 
+def stateStDatebyPerson(_conn):
+    print("++++++++++++++++++++++++++++++++++")
+
+    try: 
+        sql = """SELECT l.state, p.startDate
+                    FROM Location l, Fees f, Permits p
+                    WHERE l.parkIDNumber = f.parkIDNumber
+                    AND f.permitType = p.type
+                    AND p.ownerName = "John Long";"""
+        
+        cur = _conn.cursor()
+        cur.execute(sql)
+
+        l = '{:>10} {:>10}'.format("State", "Start Date")
+        print(l)
+        print("-------------------------------")  
+        
+        rows = cur.fetchall()
+        for row in rows:
+            l = '{:>10} {:>10}'.format(row[0], row[1])
+            print(l)
+
+    except Error as e:
+        print(e)    
+
+    print("++++++++++++++++++++++++++++++++++")
+
 
 def main():
     database = r"project.db"
 
     # create a database connection
     conn = openConnection(database)
-    with conn:
-        #dropTables(conn)
-        #createTables(conn)
-        #populateTables(conn)
-        parksAllowSwimming(conn)            #1
-        cmpPermitsFees(conn)                #2
-        parksHvBearsCamping(conn)           #3
-        actInShenandoah(conn)               #4
-        typesOfPark(conn)                   #5
-        countStaff(conn)                    #6
-        featureByPark(conn, "Yellowstone")  #7
-        expsActivities(conn)                #8
-        prkPermitbyStMonth(conn, "2023-11-1") #9      #should change function name to make more sense
-        staffAtPrk(conn)                    #10
-        permitFeeperPark(conn, "Yosemite", "backpacking")   #11
-        parkOprHrs(conn, "Great Smokey Mountains")          #12
-        listTrails(conn, "Great Sand Dunes")                #13
-        totPermitsperPark(conn, "Yosemite")                 #14
-        permitsbyPark(conn)                                #15
-        featuresByState(conn)                              #16
-        totalFeesbyPark(conn)                              #17
+    #with conn:
+    #dropTables(conn)
+    #createTables(conn)
+    #populateTables(conn)
+    parksAllowSwimming(conn)            #1
+    cmpPermitsFees(conn)                #2
+    parksHvBearsCamping(conn)           #3
+    actInShenandoah(conn)               #4
+    typesOfPark(conn)                   #5
+    countStaff(conn)                    #6
+    featureByPark(conn, "Yellowstone")  #7
+    expsActivities(conn)                #8
+    prkPermitbyStMonth(conn, "2023-11-1") #9      #change function name?
+    staffAtPrk(conn)                    #10
+    permitFeeperPark(conn, "Yosemite", "backpacking")   #11
+    parkOprHrs(conn, "Great Smokey Mountains")          #12
+    listTrails(conn, "Great Sand Dunes")                #13
+    totPermitsperPark(conn, "Yosemite")                 #14
+    permitsbyPark(conn)                                #15
+    featuresByState(conn)                              #16
+    totalFeesbyPark(conn)                              #17
+    stateStDatebyPerson(conn)
 
 
-        closeConnection(conn, database)
+    closeConnection(conn, database)
 
 
 if __name__ == '__main__':
