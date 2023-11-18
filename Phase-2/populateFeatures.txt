@@ -1,0 +1,37 @@
+def insert_Features(_conn, _parkId, _featureName, _structures, _flora, _fauna):
+    print("++++++++++++++++++++++++++++++++++")
+    print("Insert Features")
+
+    try:
+           sql = """INSERT INTO Features(parkIdNumber, featureName, structures, flora, fauna)
+               VALUES(?, ?, ?, ?, ?)"""
+           args = [_parkId, _featureName, _structures, _flora, _fauna]
+           _conn.execute(sql, args)
+	   _conn.commit()
+           print("successs")
+    except Error as e:
+           _conn.rollback()
+           print(e)
+    print("++++++++++++++++++++++++++++++++++")
+
+def populateTable_Features (_conn):
+    print("++++++++++++++++++++++++++++++++++")
+    print("Populate Features")
+    insert_Features(1, 'Old Faithful-Grand Prismatic-Yellowstone Falls-Mudpots', 'visitor centers-hotels-bathrooms-gift shops', 'Lodgepole Pine', 'Bison-Elk-Grizzley Bear-Wolf')
+    insert_Features(2, 'Half Dome-Vernal Falls-Upper+Lower Yosemite Falls-Vernal Falls', 'visitor centers-hotels-bathrooms-gift shops', 'Lodgepole Pine', 'Brown Bear-Raccoon-Deer-Chipmunk')
+    insert_Features(3, 'Delicate Arch-Windows-Great Wall-Courthouse', 'visitor center-bathrooms-gift shop', 'Chaparael', 'Coyote-Alligator Lizard')
+    insert_Features(4, 'Cadillac Mountain-Jordan Pond-Somes Sound', 'visitor center-bathrooms-gift shop-lighthouse', 'Oak-Birch-Choke Cherry', 'Squirell-Deer-Raccoon')
+    insert_Features(5, 'Colorado River-South Rim-North Rim', 'visitor centers-bathrooms-gift shops', 'Engleman Spruce-Douglas Fir-Aspen-Mountain Ash', 'Bighornn Sheep-Wild Burros-Coyote-Salamander-Trout-Walleye-Catfish')
+    insert_Features(6, 'Kelso Dunes-Clark Mountains-lava flows-lava domes', 'visitor center-bathrooms-gift shops-train station', 'Joshua Tree-Cresote bush-Pinion Juniper-Yucca', 'Tortise-Badger-Coyote')
+    insert_Features(7, 'Devils Postpile-Rainbow Falls', 'visitor center-bathrooms-gift shop', 'Lodgepole Pine-White Fir-Red Fir-Willows-Black Cottonwood', 'Black Bear-Pine Marten-Mule Deer')
+    insert_Features(8, 'San Andreas Fault-Pacific Ocean-Sand Dunes-Wetlands-Marshes', 'visitor center-bathrooms-gift shop-light house', 'Sky Lupine-California Poppies-Bull Kelp', 'Harbor Seal-Bobcat-Coyote-Elephant Seal-Elk-Califonia Grey Whale')
+    insert_Features(9, 'prarie-grassland-ephemeral marshes-ponds', 'visitor center-bathrooms-gift shop', 'Giant Bristle Grass-Sargassum Weed-Roughseed Sea Purslane', 'Ghost Crab-Sheepshead-Redfish-Flounder-Black Drum-Coyote-Deer-Leatherback Sea Turtle-Green Sea Turtle-Kemps Ridley Sea Turtle-Loggerhead Sea Turtle-Hawksbill Sea Turtle')
+    insert_Features(10, 'San Diego Harbor-North Island-', 'lighthouse-visitor center-bathrooms-gift shop', 'snake cholla-prickly pear cactus-Mojave yucca-Shaws agave-California coast poppy-Indian paintbrush-California buckwheat-California sagebrush-lemonadeberry', 'Grey Whale-Trapdoor Spider-Great Blue Heron-California Quail-Canyon Bat')
+    insert_Features(11, 'mixed grass prarie-sandstones-siltstones-mudstones-claystones-limestones-volcanic ash', 'visitorcenters-bathroom-overlooks', 'Western Wheatgrass-juniper', 'Bison-Pronghorn-Prarie Dog-Rattlesnake')
+    insert_Features(12, 'Continental Divide-Glaciers-Mount Ida-McHenrys Peak', 'visitorcenters-bathrooms-boat launch', 'Lichen-Liverwort-Moss-Aspen-Columbine', 'Moose-Bighorn Sheep-Elk-Black Bear-Coyote-Mule Deer-Cougar')
+    insert_Features(13, 'Temperate Rainforest-Hoh River-Hall of Mosses Trail-Elwah River-Glaciers-Rialto Beach', 'visitorcenters-bathrooms-boat launch-overlooks', 'Big Leaf Maples-Sitka Spruce-Western Hemlock', 'Mountain Goat-Cougar-Bald Eagle-Black Bear-Elk-Harbor Seal')
+    insert_Features(14, 'Star Dune-Mendano Creek-Sangre De Christo Mountains-High Dune', 'visitorcenter-bathrooms', 'Ponderosa Pine-Pinion Juniper-Cottonwood-Aspen-Red Osier Dogwood-Bristlecone Pine-Limber Pine', 'Pika-Ptarmigan-Marmot-Bighorn Sheep-Cougar-Mule Deer-Owl-Dusky Grouse-Turkey-Elk-Pronghorn')
+    insert_Features(15, 'Appalacian Trail-Clingmans Dome-Newfound Gap-Cades Cove-Chimney Tops-Andrews Bald', 'visitorcenter-bathrooms', 'Dogwood-Azalea-Sweet Birch-Eastern White Pine-Eastern Red Bud', 'Black Bear-Spotfin Chub-salamanders-River Otter-Elk-Peregrine Falcon-Northern Flying Squirrel')
+
+    print("success")
+    print("++++++++++++++++++++++++++++++++++")
