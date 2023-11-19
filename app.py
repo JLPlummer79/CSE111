@@ -1,16 +1,17 @@
+from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 
-#Going to abandon this way for CSE-111 is not what is desired
+app = Flask(__name__)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///project.db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False;           #reduces number of error messages
 
-db = SQLAlchemy(app)
+project = SQLAlchemy(app)
 
-class Parks(db.Model):
-    iDNumber = db.Column(db.Integer(15), primary_key = True)
-    #featureNameFeatures? this one is inherited from Features... so I am not sure here
-    designation = db.Column(db.String(24))
-    hours = db.Column(db.String(12))
-    totalNumPermits = db.Column(db.Int(5))
-    permitType = db.Column(db.String(25))
-    name = db.Column(db.String(45))
+class Parks(project.Model):
+    iDNumber = project.Column(project.Integer(15), primary_key = True)
+    designation = project.Column(project.String(24))
+    hours = project.Column(project.String(12))
+    totalNumPermits = project.Column(project.Int(5))
+    permitType = project.Column(project.String(25))
+    name = project.Column(project.String(45))

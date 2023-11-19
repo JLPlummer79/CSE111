@@ -1,0 +1,9 @@
+Report for what plan is for phase 3
+
+Back-end structure being used is Flask; 
+- version of SQL used is SQLite
+- start with importing the already existing db
+- make the necessary classes that correspond to the tables in the db
+
+
+Front-end TBD (will at very least will involve some CSS & HTML)
