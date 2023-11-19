@@ -15,3 +15,19 @@ class Parks(project.Model):
     totalNumPermits = project.Column(project.Int(5))
     permitType = project.Column(project.String(25))
     name = project.Column(project.String(45))
+
+class Features(project.Model):
+    parkIDNumber = project.Column(project.Int(15), primary_key = True)
+    featureName = project.Column(project.String(200))
+    structures = project.Column(project.String(150))
+    flora = project.Column(project.String(200))
+    fauna = project.Column(project.String(200))
+
+class Location(project.Model):
+    parkIDNumber = project.Column(project.Int(15), primary_key = True)
+    state = project.Column(project.String(10))
+    address = project.Column(project.String(25))
+    county = project.Column(project.String(25))
+    city = project.Column(project.String(45))
+    zipcode = project.Column(project.Int(14))
+      
