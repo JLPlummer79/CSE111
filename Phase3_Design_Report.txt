@@ -4,6 +4,9 @@ Back-end structure being used is Flask;
 - version of SQL used is SQLite
 - start with importing the already existing db
 - make the necessary classes that correspond to the tables in the db
-
+    completed on 11/19/23 JLP
+- ORM: object relation mapper
+-learned about how to map the ORM to a pre-existing data base using 
+automap (chose over reflect, wanted to recreate the tables as classes)
 
 Front-end TBD (will at very least will involve some CSS & HTML)
