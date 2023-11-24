@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>{% block title %} Home {% endblock %}</h1>
+    {% for park in tests %}
+        <div class='test'>
+            <p>{{ park.name }}</p>
+            <p>{{ park.designation }}</p>
+            <p>{{ park.permitType }}</p>
+        </div>
+    {% endfor %}
+{% endblock %}
