@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template,url_for
 import sqlite3
 from sqlite3 import Error
 #from flask_sqlalchemy import SQLAlchemy
@@ -10,6 +10,13 @@ from sqlite3 import Error
 #import os
 
 app = Flask(__name__)
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite'
+# db = SQLAlchemy(app)
+
+# Base = automap_base()
+# Base.prepare(db.engine, reflect=True)
+# Park = Base.classes.park
+
 
 def openConnection(_dbFile):
     """ create a database connection to the SQLite database
@@ -46,7 +53,8 @@ def closeConnection(_conn, _dbFile):
 
 @app.route('/')
 def index():
-    database = r"project.db"
+    
+    database = r"db.sqlite"
     con = openConnection(database)
     cur = con.cursor()
     
@@ -56,6 +64,7 @@ def index():
         """
         cur.execute(sql)
         tests =  cur.fetchall()
+
         l = '{:>10} {:>10} {:>10} {:>10} {:>10}'.format("Name", "Designation", "Address", "City", "Zip Code")
         print(l)
         print("-------------------------------")
@@ -69,7 +78,8 @@ def index():
 
     closeConnection(con, database)
 
-    return render_template('index.html', tests=tests)
+    return render_template('index.html', parks=tests)
+    return ''
 
 #@app.route('/<name>/<email>')
 #def index(name,email):
@@ -79,11 +89,11 @@ def index():
 #     return '<h1>Added new user</h1>'
 
 
-def main():
-    database = r"project.db"
-    con = openConnection(database)
-    closeConnection(con, database)
+#def main():
+    #database = r"project.db"
+    #con = openConnection(database)
+    #closeConnection(con, database)
 
 if __name__ == '__main__':
     #create_app()
-    app.run()
+    app.run(debug=True, port=8080)
