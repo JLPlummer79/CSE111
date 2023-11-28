@@ -93,6 +93,84 @@ def parkFeatures(_conn, prk):
         print(e)
     print("++++++++++++++++++++++++++++++++++")
 
+def allParkActivities(_conn, _park): 
+    print("++++++++++++++++++++++++++++++++++")
+    cur = _conn.cursor()
+    try:
+        sql = """ SELECT p.name, p.permitType
+                    FROM Park p
+                    WHERE p.name = ?
+              """
+        args = [_park]
+        cur.execute(sql,args)
+        l = '{:>10} {:>10}'.format("Name", "Activity")
+        print(l)
+        print("-------------------------------")
+        rows = cur.fetchall()
+        for row in rows:
+            l = '{:>10} {:>10}'.format(row[0], row[1]) 
+            print(l)
+    except Error as e:
+        print(e)
+    
+    print("++++++++++++++++++++++++++++++++++")
+
+def printParkFee(_conn, _act, _park):
+    cur = _conn.cursor()
+    print("++++++++++++++++++++++++++++++++++")
+
+    try:
+        sql = """SELECT Fees.amount, Fees.permitType, Park.name
+                    FROM Park, Fees
+                    WHERE Park.iDNumber = Fees.parkIDNumber
+                    AND Fees.permitType = ?
+                    AND Park.name = ? """
+        
+        args = [_act, _park]
+
+        cur = _conn.cursor()
+        cur.execute(sql, args)
+
+        l = '{:>10} {:>10} {:>10}'.format("Fee", "Activity", "Park")
+        print(l)
+        print("-------------------------------")
+
+        rows = cur.fetchall()
+        for row in rows:
+            l = '{:>10} {:>10} {:>10}'.format(row[0], row[1], row[2])
+            print(l)
+
+    except Error as e:
+        print(e)
+
+    print("++++++++++++++++++++++++++++++++++")
+
+def parkOprHrs(_conn, _park):
+    print("++++++++++++++++++++++++++++++++++")
+
+    try:
+        sql = """SELECT Park.hours, Park.name
+                    FROM Park
+                    WHERE Park.name = ?"""
+        
+        args = [_park]
+        cur = _conn.cursor()
+        cur.execute(sql, args)
+
+        l = '{:>10} {:>10}'.format("Hours", "Park")
+        print(l)
+        print("-------------------------------")
+
+        rows = cur.fetchall()
+        for row in rows:
+            l = '{:>10} {:>10}'.format(row[0], row[1])
+            print(l)
+
+    except Error as e:
+        print(e)
+
+    print("++++++++++++++++++++++++++++++++++")
+
 def printAllRecreation(_conn): 
     print("++++++++++++++++++++++++++++++++++")
     cur = _conn.cursor()
@@ -110,3 +188,57 @@ def printAllRecreation(_conn):
        print(e)
 
     print("++++++++++++++++++++++++++++++++++")
+
+def listTrails(_conn, _park):
+    print("++++++++++++++++++++++++++++++++++")
+
+    try:
+        sql = """SELECT Park.name, Recreation.trailName
+                    FROM Park, Recreation
+                    WHERE Park.iDNumber = Recreation.parkIDNumber
+                    AND Park.name = ?"""
+        args = [_park]
+        cur = _conn.cursor()
+        cur.execute(sql, args)
+
+        l = '{:>10} {:>10}'.format("Park", "Trail")
+        print(l)
+        print("-------------------------------")
+
+        rows = cur.fetchall()
+        for row in rows:
+            l = '{:>10} {:>10}'.format(row[0], row[1])
+            print(l)
+
+    except Error as e:
+        print(e)
+
+    print("++++++++++++++++++++++++++++++++++")
+
+def permitsByPark(_conn, _park):
+
+    print("++++++++++++++++++++++++++++++++++")
+
+    try:
+        sql = """SELECT p.name, r.permitIDNumber, r.activity
+                FROM Park p, Recreation r
+                WHERE p.name = ? 
+                AND p.iDNumber = r.parkIDNumber
+            """
+        args = [_park]
+        cur = _conn.cursor()
+        cur.execute(sql, args)
+
+        l = '{:>10} {:>20} {:>10}'.format("Park", "Permit Id Number", "Activity")
+        print(l)
+        print("-------------------------------")
+
+        rows = cur.fetchall()
+        for row in rows:
+            l = '{:>10} {:>20} {:>10}'.format(row[0], row[1], row[2])
+            print(l)
+    except Error as e:
+        print(e)
+
+    print("++++++++++++++++++++++++++++++++++")
+
