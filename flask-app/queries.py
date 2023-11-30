@@ -175,7 +175,10 @@ def printAllRecreation(_conn):
     print("++++++++++++++++++++++++++++++++++")
     cur = _conn.cursor()
     try:
-        sql = """ SELECT activity FROM Recreation;""" 
+        sql = """ SELECT DISTINCT activity 
+                     FROM Recreation
+                     GROUP BY parkIDNumber;
+            """ 
         cur.execute(sql)
         l = '{:>10}'.format("Activity")
         print(l)
@@ -242,3 +245,176 @@ def permitsByPark(_conn, _park):
 
     print("++++++++++++++++++++++++++++++++++")
 
+def featuresByState(_conn, _state):
+    print("++++++++++++++++++++++++++++++++++")
+
+    try: 
+        sql = """SELECT P.name, F.fauna, F.flora, F.featureName
+                    FROM Features F, Location L, Park P
+                    WHERE L.state = ?
+                    AND F.parkIDNumber = L.parkIDNumber
+                    AND P.iDNumber = L.parkIDNumber;
+            """
+        
+        cur = _conn.cursor()
+        args = [_state]
+        cur.execute(sql, args)
+        
+        l = '{:>10} {:>10} {:>10} {:>10}'.format("Park", "Animals", "Plants", "Features")
+        print(l)
+        print("-------------------------------")
+
+        rows = cur.fetchall()
+        for row in rows:
+            l = '{:>10} {:>10} {:>10} {:>10}'.format(row[0], row[1], row[2], row[3])
+            print(l)
+    
+    except Error as e:
+        print(e)
+
+    print("++++++++++++++++++++++++++++++++++")
+
+def featuresByPark(_conn, _park):
+    print("++++++++++++++++++++++++++++++++++")
+
+    try: 
+        sql = """SELECT F.fauna, F.flora, F.featureName
+                    FROM Features F, Park P
+                    WHERE P.name = ?
+                    AND F.parkIDNumber = P.iDNumber;
+            """
+        
+        cur = _conn.cursor()
+        args = [_park]
+        cur.execute(sql, args)
+        
+        l = '{:>10} {:>10} {:>10}'.format("Animals", "Plants", "Features")
+        print(l)
+        print("-------------------------------")
+
+        rows = cur.fetchall()
+        for row in rows:
+            l = '{:>10} {:>10} {:>10}'.format(row[0], row[1], row[2])
+            print(l)
+    
+    except Error as e:
+        print(e)
+
+    print("++++++++++++++++++++++++++++++++++")
+
+def structByPark(_conn, _park):
+    print("++++++++++++++++++++++++++++++++++")
+    cur = _conn.cursor()
+    try:
+         sql = """ SELECT P.name, F.structures
+                    FROM Park P, Features F
+                    WHERE P.name = ?
+                    AND P.iDNumber = F.parkIDNumber
+         """ 
+         args = [_park]
+         cur.execute(sql,args)
+
+         l = '{:>10} {:>10}'.format("Park", "Structure")
+         print(l)
+         print("-------------------------------")
+
+         rows = cur.fetchall()
+         for row in rows:
+            l = '{:>10} {:>10}'.format(row[0], row[1])
+            print(l)
+
+    except Error as e:
+       print(e)
+    
+    print("++++++++++++++++++++++++++++++++++")
+
+def stateDatebyPerson(_conn, _name):
+    print("++++++++++++++++++++++++++++++++++")
+    cur = _conn.cursor()
+
+    try: 
+        sql = """SELECT l.state, p.startDate
+                    FROM Location l, Fees f, Permits p
+                    WHERE l.parkIDNumber = f.parkIDNumber
+                    AND f.permitType = p.type
+                    AND p.ownerName = ?
+                    GROUP BY ownerName;
+            """
+        
+        args = [_name]
+        cur.execute(sql, args)
+
+        l = '{:>10} {:>10}'.format("State", "Start Date")
+        print(l)
+        print("-------------------------------")  
+        
+        rows = cur.fetchall()
+        for row in rows:
+            l = '{:>10} {:>10}'.format(row[0], row[1])
+            print(l)
+
+    except Error as e:
+        print(e)    
+
+    print("++++++++++++++++++++++++++++++++++")
+
+def totalFeesbyPark(_conn, _park):
+    print("++++++++++++++++++++++++++++++++++")
+
+    cur = _conn.cursor()
+    try:
+        sql = """SELECT Sum(F.amount), Park.name
+                    FROM Fees F, Park
+                    WHERE F.permitType IN (   
+                        SELECT P.type
+                        FROM Park, Permits P
+                        WHERE Park.IdNumber = P.parkIdNumber)
+                    AND Park.iDNumber = F.parkIdNumber
+                    AND Park.name = ?
+                    GROUP BY F.parkIdNumber
+            """
+        args = [_park]
+        cur.execute(sql, args)
+
+
+        l = '{:>10} {:>10}'.format("Total Fees", "Park")
+        print(l)
+        print("-------------------------------")     
+
+        rows = cur.fetchall()
+        for row in rows:
+            l = '{:>10} {:>10}'.format(row[0], row[1])
+            print(l)
+
+    except Error as e:
+        print(e)
+
+    print("++++++++++++++++++++++++++++++++++")    
+
+def staffByState(_conn, _state):
+    print("++++++++++++++++++++++++++++++++++")
+    
+    cur = _conn.cursor()
+
+    try:
+        sql= """SELECT P.name, S.name
+                    FROM Park P, Staff S, Location L
+                    WHERE P.iDNumber = S.parkIDNumber
+                    AND L.state = ?
+                    AND L.parkIDNumber = S.parkIDNumber
+            """
+        args = [_state]
+        cur.execute(sql, args)
+        l = '{:>10} {:>10}'.format("Park", "Employee")
+        print(l)
+        print("-------------------------------")
+
+        rows = cur.fetchall()
+        for row in rows:
+            l = '{:>10} {:>10}'.format(row[0], row[1])
+            print(l)
+
+    except Error as e:
+        print(e)
+
+    print("++++++++++++++++++++++++++++++++++")

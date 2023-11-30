@@ -1,31 +1,40 @@
-from queries import printAllParks, openConnection, closeConnection, printAllRecreation, parkFeatures, printParkFee, allParkActivities, parkOprHrs, listTrails, permitsByPark
-
+from queries import printAllParks, openConnection, closeConnection, printAllRecreation, parkFeatures, printParkFee, allParkActivities, parkOprHrs, listTrails, permitsByPark, featuresByPark, featuresByState, structByPark, stateDatebyPerson, totalFeesbyPark, staffByState
+   
 def menu(_conn):
+    print("==== Main Menu ====")
     print("(0) Quit Program")
-    print("(1) Select Park Menu")   #sub-menu for park queries
-    print("(2) to see all Features")# will bec sub menu for 
-    print("(3) to view Recreation")
+    print("(1) Select Park Menu")  
+    print("(2) Select Features Menu")
+    print("(3) Select Recreation Menu")
+    print("(4) Select Administrative Menu")
     res = -1
     while(res != 0 or res > 3):
-        res = int(input("Enter number: "))
+        check = input("Enter number: ")
+        
+        if check.isdigit():
+            res = int(check)
+        else:
+            print("Please enter a number.")
 
         if res == 1:
             sub_menu_Parks(_conn)
         elif res == 2: 
-            #query all features
-            print("query all features")
+            sub_menu_Features(_conn)
         elif res == 3:
-            print("query all recreation activities")
             sub_menu_Recreation(_conn)
-            #printAllRecreation(_conn)
+        elif res == 4:
+            sub_menu_Admin(_conn)
 
-
+        print("==== Main Menu ====")
         print("(0) Quit Program")
-        print("(1) Select Park Menu")   #will turn into a sub-menu for park queries
-        print("(2) to see all Features")# will bec sub menu for 
+        print("(1) Select Park Menu")   
+        print("(2) Select Features Menu")
         print("(3) Select Recreation Menu")
+        print("(4) Select Administrative Menu")
 
 def sub_menu_Parks(_conn):
+
+    print("==== Parks Sub-Menu ====")
     print("(0) Quit sub menu")
     print("(1) List all Parks")
     print("(2) List all Features in Selected Park")
@@ -34,7 +43,13 @@ def sub_menu_Parks(_conn):
     print("(5) List Operating Hours for Selected Park")
     res = -1
     while (res != 0):
-        res = int(input("Enter number:"))
+        check = input("Enter number: ")
+
+        if check.isdigit():
+            res = int(check)
+        else:
+            print("Please enter a number.")
+
         if res == 1:
             printAllParks(_conn)
             res = 0
@@ -57,16 +72,23 @@ def sub_menu_Parks(_conn):
             res = 0
 
 def sub_menu_Recreation(_conn):
+    print("==== Recreation Sub-Menu ====")
     print("(0) Quit sub menu")
-    print("(1) List all Parks")
+    print("(1) List all Activities")
     print("(2) List all Trails in Selected Park")
     print("(3) List all Permits in Selected Park")
-    print("(4) List Fee for selected activity in Selected Park")
+    print("(4) List Structures in Selected Park") 
     res = -1
     while (res != 0):
-        res = int(input("Enter number: "))
+        check = input("Enter number: ")
+        
+        if check.isdigit():
+            res = int(check)
+        else:
+            print("Please enter a number.")
+
         if res == 1:
-            printAllParks(_conn)
+            printAllRecreation(_conn)
             res = 0
         elif res == 2:
             _park = input("Enter park name: ")
@@ -76,7 +98,71 @@ def sub_menu_Recreation(_conn):
             _park = input("Enter park name: ")
             permitsByPark(_conn, _park)
             res = 0
-            
+        elif res == 4:
+            _park = input("Enter park name: ")
+            structByPark(_conn, _park)
+            res = 0
+        
+
+def sub_menu_Features(_conn):
+    print("==== Features sub menu ====")
+    print("(0) Quit sub menu")
+    print("(1) List all Features of Selected Park")
+    print("(2) List all Features by Selected State")
+    print("(3) List all Permits in Selected Park") # edit
+    print("(4) List Fee for selected activity in Selected Park") #edit
+    res = -1
+    while (res != 0):
+        check = input("Enter number: ")
+        
+        if check.isdigit():
+            res = int(check)
+        else:
+            print("Please enter a number.")
+
+        if res == 1:
+            _park = input("Enter park name: ")
+            featuresByPark(_conn, _park)
+            res = 0
+        elif res == 2:
+            _state = input("Enter state name: ")
+            featuresByState(_conn, _state)
+            res = 0
+        elif res == 3:
+            _park = input("Enter park name: ")
+            permitsByPark(_conn, _park)
+            res = 0
+
+def sub_menu_Admin(_conn):
+    print("==== Administrative sub menu ====")
+    print("(0) Quit sub menu")
+    print("(1) List State, & Start date of Permit Owner")
+    print("(2) List Total Fees from Selected Park")
+    print("(3) List Staffing at Parks by Selected State")
+
+    res = -1
+    while (res != 0):
+        check = input("Enter number: ")
+        
+        if check.isdigit():
+            res = int(check)
+        else:
+            print("Please enter a number.")
+
+        if res == 1:
+            _name = input("Enter permit owner name: ")
+            stateDatebyPerson(_conn, _name)
+            res = 0
+        
+        elif res == 2:
+            _park = input("Enter park name: ")
+            totalFeesbyPark(_conn, _park)
+            res = 0
+        
+        elif res == 3:
+            _state = input("Enter state name: ")
+            staffByState(_conn, _state)
+            res = 0
 
 def main():
     database = r"db.sqlite"
