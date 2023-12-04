@@ -1,5 +1,5 @@
 from queries import printAllParks, openConnection, closeConnection, printAllRecreation, parkFeatures, printParkFee, allParkActivities, parkOprHrs, listTrails, permitsByPark, featuresByPark, featuresByState, structByPark, stateDatebyPerson, totalFeesbyPark, staffByState
-   
+from queries import createPermit
 def menu(_conn):
     print("==== Main Menu ====")
     print("(0) Quit Program")
@@ -139,6 +139,7 @@ def sub_menu_Admin(_conn):
     print("(1) List State, & Start date of Permit Owner")
     print("(2) List Total Fees from Selected Park")
     print("(3) List Staffing at Parks by Selected State")
+    print("(4) Create Permit")
 
     res = -1
     while (res != 0):
@@ -162,6 +163,22 @@ def sub_menu_Admin(_conn):
         elif res == 3:
             _state = input("Enter state name: ")
             staffByState(_conn, _state)
+            res = 0
+        elif res == 4:
+            gate = 0
+            while gate != 1:
+                _name = input("Enter permit owner name: ")
+                _act = input("Enter permit type: ")
+                _park = input("Enter park name: ")
+                _sdate = input("Enter start date YYYY-MM-DD: ")
+                _edate = input("Enter end date YYYY-MM-DD: ")
+                _dur = input("Enter duration: ")
+                if _dur.isdigit():
+                    gate = 1
+                else:
+                    print("You must enter a number for the duration!")
+            
+            createPermit(_conn, _park, _name, _act, _sdate, _edate, _dur)
             res = 0
 
 def main():

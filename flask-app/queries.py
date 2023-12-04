@@ -418,3 +418,70 @@ def staffByState(_conn, _state):
         print(e)
 
     print("++++++++++++++++++++++++++++++++++")
+
+    # small query to get the parkid based on the park name
+def getParkID(_conn, _name):
+        cur = _conn.cursor()
+
+        try:
+            sql = """ SELECT p.iDNumber
+                        FROM Park p
+                        WHERE p.name = ?
+            """
+            args = [_name]
+            cur.execute(sql, args)
+            data = cur.fetchall()
+            for d in data:
+                arg = d[0]
+
+            arg = int(arg)
+            return arg
+        
+        except Error as e:
+            print(e)
+
+def incPermitID(_conn):
+        cur = _conn.cursor()
+
+        try:
+            sql = """ SELECT MAX(IDNumber) 
+                    FROM Permits;
+            """
+            cur.execute(sql)
+
+            data = cur.fetchall()
+            for d in data:
+                arg = d[0]
+            
+            arg = int(arg)
+            arg = arg + 1
+            #print(arg)
+            return arg
+        
+        except Error as e:
+            print(e)
+
+def createPermit(_conn, _park, _name, _act, _sdate, _edate, _dur):
+        print("++++++++++++++++++++++++++++++++++")
+    
+        cur = _conn.cursor()
+
+        pID = getParkID(_conn, _park)
+        pID = str(pID)
+        num = incPermitID(_conn)
+        num = str(num)
+
+        try:
+            sql = """ INSERT INTO Permits(parkIdNumber, IdNumber, ownerName, type, duration, startDate, endDate) 
+                VALUES(?, ?, ?, ?, ?, ?, ?)
+            """
+            args = [pID, num, _name, _act, _dur, _sdate, _edate]
+            cur.execute(sql, args)
+            _conn.commit()
+            print("Permit successfully created.")
+
+        except Error as e:
+            _conn.rollback()
+            print(e)
+
+        print("++++++++++++++++++++++++++++++++++")
