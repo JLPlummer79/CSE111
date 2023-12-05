@@ -109,8 +109,8 @@ def sub_menu_Features(_conn):
     print("(0) Quit sub menu")
     print("(1) List all Features of Selected Park")
     print("(2) List all Features by Selected State")
-    print("(3) List all Permits in Selected Park") # edit
-    print("(4) List Fee for selected activity in Selected Park") #edit
+    #print("(3) List all Permits in Selected Park") # edit
+    #print("(4) List Fee for selected activity in Selected Park") #edit
     res = -1
     while (res != 0):
         check = input("Enter number: ")
